@@ -1,13 +1,14 @@
 # FRONT OFFICE
-homepage:
+homepage :
   path: /
   defaults: { _controller: 'Controller\PageController::goHome' }
 
-clients:
+clients :
   path: /clients
   defaults: { _controller: 'Controller\ClientsController::listClients' }
 
 # BACK OFFICE
-admin:
+super :
   path: /admin
   defaults: { _controller: 'Controller\PageController::goBack' }
+  
