@@ -20,9 +20,9 @@ class ClientModel extends Model
                 FROM clients';
 
         $requete = self::$db->query($sql);
+
         return $requete->fetchAll(PDO::FETCH_OBJ);
         
     }
-
 }
 
