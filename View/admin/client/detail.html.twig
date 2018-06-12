@@ -1,0 +1,10 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Client{% endblock %}
+
+{% block body %}
+
+    <h1>Profil Client</h1>
+    <br /><br />
+
+    {{ client|json_encode }}
+{% endblock %}

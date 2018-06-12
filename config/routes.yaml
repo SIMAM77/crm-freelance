@@ -7,6 +7,11 @@ clients :
   path: /clients
   defaults: { _controller: 'Controller\ClientsController::listClients' }
 
+client :
+  path: /client?id={id}
+  defaults: { _controller: 'Controller\ClientsController::viewClient' }
+
+
 # BACK OFFICE
 super :
   path: /admin

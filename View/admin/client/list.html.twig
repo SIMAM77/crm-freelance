@@ -1,0 +1,31 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+
+    ICI NOS CLIENTS
+    <br /><br />
+
+    {% for cl in clients %}
+        <a href="/client?id={{ cl.id }}">
+        {{ cl.company }}
+        <hr />
+        {{ cl.firstname }} {{ cl.lastname }}
+        </a>
+
+        {% if cl.happiness == 0 %}
+            pas content
+        {% else %}
+            {% if cl.happiness == 1 %}
+                moyen content
+            {% else %}
+                content
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <br />
+    <br />
+
+    {{ clients|length }} contacts
+{% endblock %}

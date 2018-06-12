@@ -31,10 +31,6 @@ CREATE TABLE `project` (
   PRIMARY KEY (`id`),
   KEY `fk_p_id_user_idx` (`id_user`),
   CONSTRAINT `fk_p_id_user_idx` FOREIGN KEY (`id_user`) REFERENCES `client` (`id`)
-
-
-
-  FOREIGN KEY (`id_user`) REFERENCES `client`(`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -45,5 +41,5 @@ CREATE TABLE `bill` (
     `create_date` datetime NOT NULL,
     `status` varchar(250) DEFAULT 'envoyé',
     `payed_date` datetime,
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
