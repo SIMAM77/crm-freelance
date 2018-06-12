@@ -12,3 +12,6 @@ super :
   path: /admin
   defaults: { _controller: 'Controller\PageController::goBack' }
   
+install : 
+  path : /install
+  defaults: { _controller: 'Controller\InstallController::installDB' }
