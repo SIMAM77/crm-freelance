@@ -15,8 +15,6 @@ class PageController extends Controller
 
     public function goBack()
     {
-        var_dump('ij');
-        die();
         return self::$twig->render('admin/dashboard.html.twig');
     }
 }
