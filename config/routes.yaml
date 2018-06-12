@@ -11,6 +11,10 @@ client :
   path: /client?id={id}
   defaults: { _controller: 'Controller\ClientsController::viewClient' }
 
+add-client :
+  path: /add-client
+  defaults: { _controller: 'Controller\ClientsController::addClient' }
+
 
 # BACK OFFICE
 super :

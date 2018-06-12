@@ -59,29 +59,29 @@ class ClientModel extends Model
 
             $dNow = new \DateTime();
 
-            $sql = 'INSERT INTO client(
+            $sql = 'INSERT INTO client (
                       id, 
                       firstname, 
                       lastname, 
                       picture, 
                       company,
-                      date_create, 
-                    )                 
-                    VALUES(
+                      date_create
+                    ) VALUES (
                       NULL, 
                       :firstname, 
                       :lastname, 
                       :picture,
                       :company, 
-                      :date_create, 
+                      :date_create
                     )';
 
             $requete = self::$db->prepare($sql);
 
             $requete->bindValue(':firstname', $statement['firstname'], PDO::PARAM_INT);
             $requete->bindValue(':lastname', $statement['lastname'], PDO::PARAM_STR);
+            $requete->bindValue(':company', $statement['company'], PDO::PARAM_STR);
             $requete->bindValue(':picture', $statement['picture'], PDO::PARAM_STR);
-            $requete->bindValue(':date_create', $dNow);
+            $requete->bindValue(':date_create', $dNow->format('Y-m-d H:i:s'), PDO::PARAM_STR);
 
             $requete->execute();
 
