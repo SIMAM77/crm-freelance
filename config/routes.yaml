@@ -3,6 +3,7 @@ homepage :
   path: /
   defaults: { _controller: 'Controller\PageController::goHome' }
 
+# CLIENT
 clients :
   path: /clients
   defaults: { _controller: 'Controller\ClientsController::listClients' }
@@ -14,7 +15,6 @@ client :
 add-client :
   path: /add-client
   defaults: { _controller: 'Controller\ClientsController::addClient' }
-
 
 # BACK OFFICE
 super :

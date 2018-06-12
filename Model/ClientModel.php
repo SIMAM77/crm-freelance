@@ -171,4 +171,3 @@ class ClientModel extends Model
         }
     }
 }
-

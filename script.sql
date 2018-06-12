@@ -41,5 +41,6 @@ CREATE TABLE `bill` (
     `create_date` datetime NOT NULL,
     `status` varchar(250) DEFAULT 'envoyé',
     `payed_date` datetime,
+    `file_name` varchar(250) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

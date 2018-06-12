@@ -2,10 +2,11 @@
     "name": "hetic/si-CRM",
     "require": {
         "php": ">=7.1.6",
-        "twig/twig": "^2.3",
-        "symfony/routing": "3.2",
-        "symfony/yaml": "3.2",
-        "symfony/config": "3.2"
+        "twig/twig": "^2.4",
+        "symfony/routing": "^4.1",
+        "symfony/yaml": "^4.1",
+        "symfony/config": "^4.1",
+        "symfony/http-foundation": "^4.1"
     },
     "autoload": {
         "psr-4": {
