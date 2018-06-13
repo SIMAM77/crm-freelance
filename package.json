@@ -1,0 +1,21 @@
+{
+    "name": "crm",
+    "version": "0.1.0",
+    "description": "Projet crm",
+    "main": "index.js",
+    "author": "",
+    "license": "MIT",
+    "scripts": {
+        "dev": "gulp",
+        "build": "NODE_ENV=production gulp build"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-concat": "^2.6.1",
+        "gulp-csso": "^3.0.1",
+        "gulp-sass": "^3.1.0",
+        "gulp-sourcemaps": "^2.6.4",
+        "gulp-uglify": "^3.0.0"
+    },
+    "dependencies": {}
+}

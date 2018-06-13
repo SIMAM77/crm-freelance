@@ -1,34 +1,18 @@
 <?php
 
 namespace Helper;
-use Doctrine\ORM\EntityManager;
 
 /**
- * Model Class
- * @package Model
+ * Class Model
+ * Permet de connecter nos modèles à la bdd
+ * (les classes contenues dans model en héritant)
+ * @package Helper
  */
-abstract class Model
+class Model
 {
-    /**
-     * @var EntityManager
-     */
-    protected $entityManager;
-
-    /**
-     * Repository constructor
-     */
+    protected static $db;
     public function __construct()
     {
-        $repositoryReflection = new \ReflectionClass($this);
-        $this->entityManager = ServiceContainer::getService('EntityManager');
-        // check if repository has $entity property
-
-        try {
-            $repositoryReflection->getProperty('entity');
-        } catch (\ReflectionException $e) {
-            throw new Exception(
-                'Please set Entity property name in Repository.'
-            );
-        }
+        self::$db = Connect::getPDO() ;
     }
 }

@@ -1,7 +1,5 @@
 .idea
 
-composer.json
-
 # Created by .ignore support plugin (hsz.mobi)
 ### Windows template
 # Windows thumbnail cache files
@@ -75,6 +73,8 @@ fabric.properties
 # Icon must end with two \r
 Icon
 
+node_modules/
+dist/
 
 # Thumbnails
 ._*
@@ -94,6 +94,5 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
 
 /vendor/

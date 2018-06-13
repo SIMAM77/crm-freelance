@@ -1,0 +1,105 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Client{% endblock %}
+
+{% block body %}
+
+    <nav class="nav">
+        <div class="nav-wrap">
+            <a href="/edit-client?id={{ client.id }}" class="nav-wrap-before">Editer</a>
+        </div>
+    </nav>
+
+    <section class="introduction container">
+        <div class="arrow-back">
+            <a href="/clients"><img src="../assets/img-content/back.svg" alt="back"></a>
+        </div>
+        <div class="user_details">
+            <div class="user_details-logo">
+                <img src="../assets/upload/{{ client.picture }}" alt="image de {{ client.firstname }}">
+            </div>
+            <div class="user_details-name">
+                <h3>{{ client.lastname }} {{ client.firstname }}</h3>
+            </div>
+            <div class="user_details-firme">
+                <p>{{ client.company }}</p>
+            </div>         
+        </div>
+        <div class="user_details">
+            <div class="user_details-wrap">
+                <div class="user_details-infos">
+                    <h3>Mail :</h3>
+                    <div>{{ client.email }}</div>
+                </div>
+                <div class="user_details-infos">
+                    <h3>Mobile :</h3>
+                    <div>{{ client.phone_number }}</div>
+                </div>
+                <div class="user_details-infos">
+                    <h3>Adresse :</h3>
+                    <div>{{ client.address }}</div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="user_details-projects">
+        <div class="user_details-projects--title">
+            <h2>Projets attribués</h2>
+        </div>
+        <div class="user_details-projects--list-projects">
+            <li>Refonte HETIC : <span> In progress</span></li>
+            <li>Album Feder : <span>Done</span></li>
+        </div>
+        </div>
+        <div class="user_details-humeur">
+            <div class="user_details-humeur--wrapper">
+                <div class="user_details-humeur--title">
+                    <h2>Humeur Current</h2> 
+                </div>
+                <div class="user_details-humeur--emoji">
+                    <div class="user_details-humeur--emoji-edit">
+                        <img src="../assets/img-content/unhappy.png" alt="pas content" {% if client.last_happiness == 0 %}class="active"{% endif %}>
+                    </div>
+                    <div class="user_details-humeur--emoji-edit">
+                        <img src="../assets/img-content/neutral.png" alt="neutre" {% if client.last_happiness == 1 %}class="active"{% endif %}>
+                    </div>
+                    <div class="user_details-humeur--emoji-edit">
+                        <img src="../assets/img-content/happy.png" alt="content" {% if client.last_happiness == 2 %}class="active"{% endif %}>
+                    </div>
+                </div>
+            </div>
+            <div class="user_details-humeur--wrapper">
+                <div class="user_details-humeur--title">
+                    <h2>Budget moyen</h2> 
+                </div>
+                <div class="user_details-humeur--cursor">
+                    <img src="../assets/img-content/BarreProgressBudget.svg" alt="">
+                    <img src="../assets/img-content/money.png" alt="" class="money">
+                </div>
+            </div>
+            <div class="user_details-humeur--wrapper">
+                <div class="user_details-humeur--title">
+                    <h2>Négociation statut</h2> 
+                </div>
+                <div class="user_details-humeur--cursor">
+                    <img src="../assets/img-content/BarreProgressNego.png" alt="">
+                    <img src="../assets/img-content/rocket.png" alt="" class="rocket">
+                </div>
+            </div>
+            <div class="user_details-birthday--wrapper">
+                <div class="user_details-birthday--title">
+                    <h2>Birthday</h2> 
+                </div>
+                <div class="user_details-birthday">
+                    <div>
+                        {{ client.date_of_birth|date("m/d/Y") }} {% if soonBirthday %}<span>soon</span>{% endif %}
+                    </div>
+                </div>
+                <div class="user_details-notes">
+                    <h2>Notes diverses</h2>
+                    <div class="notes">{{ client.notes }}</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

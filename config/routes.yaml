@@ -1,0 +1,35 @@
+# FRONT OFFICE
+homepage :
+  path: /
+  defaults: { _controller: 'Controller\PageController::goHome' }
+
+# CLIENT
+clients :
+  path: /clients
+  defaults: { _controller: 'Controller\ClientsController::listClients' }
+
+client :
+  path: /client?id={id}
+  defaults: { _controller: 'Controller\ClientsController::viewClient' }
+
+edit-client :
+  path: /edit-client?id={id}
+  defaults: { _controller: 'Controller\ClientsController::updateClient' }
+
+delete-client :
+  path: /delete-client
+  defaults: { _controller: 'Controller\ClientsController::removeClient' }
+
+
+add-client :
+  path: /add-client
+  defaults: { _controller: 'Controller\ClientsController::addClient' }
+
+# BACK OFFICE
+super :
+  path: /dashboard
+  defaults: { _controller: 'Controller\PageController::goDashbordFree' }
+  
+install : 
+  path : /install
+  defaults: { _controller: 'Controller\InstallController::installDB' }
