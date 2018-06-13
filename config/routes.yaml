@@ -47,6 +47,11 @@ archive-project :
   path: /archieve-project?id={id}
   defaults: { _controller: 'Controller\ProjectsController::archiveProject' }
 
+edit-project :
+  path: /edit-project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::updateProject' }
+
+
 # BACK OFFICE
 super :
   path: /dashboard

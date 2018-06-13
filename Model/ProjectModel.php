@@ -47,6 +47,7 @@ class ProjectModel extends Model
         }
         return $requete->fetch(PDO::FETCH_OBJ);
     }
+    
     /**
      * @param $statement
      * @return string id elem added
@@ -90,6 +91,7 @@ class ProjectModel extends Model
             throw new \Exception('statement is not an array');
         }
     }
+
     /**
      * @param $id
      * @return null
@@ -110,6 +112,7 @@ class ProjectModel extends Model
             throw new \Exception('param is not int');
         }
     }
+
     /**
      * @param $statement
      * @param $id
@@ -143,7 +146,8 @@ class ProjectModel extends Model
         }
     }
 
-    public function archieveProject($id){
+    public function archieveProject($id)
+    {
         $sql = 'UPDATE project
                 SET `status` = 3,
                 WHERE id = :id';

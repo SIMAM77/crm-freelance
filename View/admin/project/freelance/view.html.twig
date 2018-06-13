@@ -2,11 +2,18 @@
 {% block title %}Project{% endblock %}
 
 {% block body %}
+
+    <nav class="nav">
+        <div class="nav-wrap">
+            <a href="/edit-project?id={{ project.id }}" class="nav-wrap-before">Editer</a>
+        </div>
+    </nav>
+
     <div class="arrow-back">
         <a href="/projects"><img src="../assets/img-content/back.svg" alt="back"></a>
     </div>
 
-    <section class="project_detail background">
+    <section class="project_detail part1 background">
         <div class="project_title">
             <h2>{{ project.title }}</h2>
             <h3>Porté par <a href="/client?id={{ project.id_user }}">{{ project.name }}</a></h3>
