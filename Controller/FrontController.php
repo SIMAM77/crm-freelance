@@ -29,6 +29,11 @@ class FrontController
             $_SERVER['REQUEST_METHOD'],
             $_SERVER['HTTP_HOST']
         );
+
+        // var_dump($collection);
+        // echo "<pre>"; echo print_r($_SERVER['REQUEST_URI']); echo "</pre>";
+        // exit;        
+
         $matcher = new UrlMatcher($collection, $context);
         $parameters = $matcher->match($_SERVER['REQUEST_URI']);
 

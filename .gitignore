@@ -73,6 +73,9 @@ fabric.properties
 # Icon must end with two \r
 Icon
 
+/node_modules/
+node_modules/
+dist/
 
 # Thumbnails
 ._*
