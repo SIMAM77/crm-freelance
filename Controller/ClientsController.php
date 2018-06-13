@@ -26,8 +26,12 @@ class ClientsController extends Controller
         $client = new ClientModel();
         $data = $client->getClient($id);
 
+        // to do : add calcul to see if birthdaysoon
+        $soonBirthday = false;
+
         return self::$twig->render('admin/client/detail.html.twig', array(
-            'client' => $data
+            'client' => $data,
+            'soonBirthday' => $soonBirthday
         ));
     }
 
@@ -66,6 +70,29 @@ class ClientsController extends Controller
         } else {
             
             return self::$twig->render('admin/client/add.html.twig');
+        }
+    }
+
+    public function updateClient()
+    {
+        $id = $_GET['id'];
+        $id = (int) $id;
+        $model = new ClientModel();
+
+        if(count($_POST) > 0){
+
+            $data = $model->updateClient($_POST, $id);
+            $data = $model->getClient($id);
+
+            return self::$twig->render('admin/client/detail.html.twig', array(
+                'client' => $data
+            ));
+        }  else {
+
+            $data = $model->getClient($id);            
+            return self::$twig->render('admin/client/edit.html.twig', array(
+                'client' => $data
+            ));
         }
     }
 }

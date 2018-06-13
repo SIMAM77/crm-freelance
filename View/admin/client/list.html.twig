@@ -13,23 +13,21 @@
 
     {% for cl in clients %}
         <div class="list_cust-project"> 
-            <h3>
-                <a href="/client?id={{ cl.id }}">
-                    {{ cl.firstname }} {{ cl.lastname }}
-                </a>
-            </h3>
-            <p>{{ cl.company }}</p>
-            <div class="list_cust-smiley">
-                {% if cl.happiness == 0 %}
-                    <img src="../assets/img-content/unhappy.png">
-                {% else %}
-                    {% if cl.happiness == 1 %}
-                        <img src="../assets/img-content/neutral.png">
+            <a href="/client?id={{ cl.id }}">
+                <h3>{{ cl.firstname }} {{ cl.lastname }}</h3>
+                <p>{{ cl.company }}</p>
+                <div class="list_cust-smiley">
+                    {% if cl.happiness == 0 %}
+                        <img src="../assets/img-content/unhappy.png">
                     {% else %}
-                        <img src="../assets/img-content/happy.png">
+                        {% if cl.happiness == 1 %}
+                            <img src="../assets/img-content/neutral.png">
+                        {% else %}
+                            <img src="../assets/img-content/happy.png">
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            </div>
+                </div>
+             </a>
         </div>
     {% endfor %}
 

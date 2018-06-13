@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="225px" height="22px" viewBox="0 0 225 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="2.32714063%" y1="50%" x2="96.9141068%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#B64A26" offset="0%"></stop>
+            <stop stop-color="#F7E867" offset="49.4039017%"></stop>
+            <stop stop-color="#79BC8E" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Maquettes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2.-Fiche-client" transform="translate(-48.000000, -767.000000)" fill="url(#linearGradient-1)">
+            <g id="Select-budget" transform="translate(48.000000, 750.000000)">
+                <path d="M2.78327909,32.9685299 L221.783279,17.1064599 C223.435804,16.9867682 224.87247,18.2293754 224.992162,19.8819007 C224.997386,19.954023 225,20.0263105 225,20.0986217 L225,36 C225,37.6568542 223.656854,39 222,39 L2.91493922,39 C1.30506274,39 1.97153008e-16,37.6949373 0,36.0850608 L0,35.9606917 C-2.28795368e-15,34.3879256 1.21462221,33.082147 2.78327909,32.9685299 Z" id="Rectangle-2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

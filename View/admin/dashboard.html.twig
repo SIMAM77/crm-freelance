@@ -1,11 +1,13 @@
 {% extends "adminBase.html.twig" %}
 
 {% block body %}
-    
-    <div class="homefree-wrapp">
-    </div>
-    <h1>12 projets en cours</h1>
-
-    <a href="/projects">Liste des projets</a>
-    <a href="/clients">Liste des clients</a>
+    <section class="client has-bckgd">
+        <div class="client_descr">
+            <h2 class="client_name h2">12 projets en cours</h2>
+            <div class="client_documents">
+                <a href="/projects" class="client_documents-file">Liste des projets</a>
+                <a href="/clients" class="client_documents-file">Liste des clients</a>
+            </div>
+        </div>
+    </section>
 {% endblock %}

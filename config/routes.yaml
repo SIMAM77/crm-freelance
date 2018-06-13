@@ -12,6 +12,15 @@ client :
   path: /client?id={id}
   defaults: { _controller: 'Controller\ClientsController::viewClient' }
 
+edit-client :
+  path: /edit-client?id={id}
+  defaults: { _controller: 'Controller\ClientsController::updateClient' }
+
+delete-client :
+  path: /delete-client
+  defaults: { _controller: 'Controller\ClientsController::removeClient' }
+
+
 add-client :
   path: /add-client
   defaults: { _controller: 'Controller\ClientsController::addClient' }
