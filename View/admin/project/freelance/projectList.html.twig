@@ -1,0 +1,28 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+    <section class="list_project_free">
+            <div class="plus-add">
+                <a href="#">
+                    <img src="img/add.svg" alt="add">
+                </a>
+            </div>
+        <div class="list_project_free-add">
+            +
+        </div>
+        {% for projects in project %}
+
+        <div class="list_project_free-wrap">
+            <div class="list_project_free-item">
+                <h3 class="h3"><a href="/crm-freelance/project-fr?id={{ projects.id }}">{{ projects.title }}</a></h3>
+                <p>porté par <span>{{ project.id_user }}</span></p>
+                <div class="list_project_free-progress">
+                    {{ projects.negociation_status }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+{{ project|json_encode }}
+{% endblock %}

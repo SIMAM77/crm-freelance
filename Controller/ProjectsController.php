@@ -16,7 +16,7 @@
       {
           $projects = new ProjectModel();
           $data = $projects->getListProject();
-          return self::$twig->render('admin/project/projectList.html.twig', array(
+          return self::$twig->render('admin/project/freelance/projectList.html.twig', array(
               'project' => $data
           ));
       }
@@ -25,7 +25,7 @@
 
           $project = new ProjectModel();
           $data = $project->getProject($id);
-          return self::$twig->render('admin/project/clientproject.html.twig', array(
+          return self::$twig->render('admin/project/client/clientproject.html.twig', array(
               'project' => $data
           ));
       }
@@ -35,25 +35,38 @@
 
         $project = new ProjectModel();
         $data = $project->getProject($id);
-        return self::$twig->render('admin/project/freeproject.html.twig', array(
+        return self::$twig->render('admin/project/freelance/freeproject.html.twig', array(
             'project' => $data
         ));
     }
 
-      public function addProject()
+      public function addProjectClient()
       {
           if(count($_POST) > 0){
-                  $model = new ProjectModel();
-                  $data = $model->addProject($_POST);
-                  $data = $model->getProject($data);
-                  return self::$twig->render('admin/project/addproject.html.twig', array(
-                      'project' => $data
-                  ));
-          } else {
-              return self::$twig->render('admin/project/addproject.html.twig', array(
+            $model = new ProjectModel();
+            $data = $model->addProject($_POST);
+            $data = $model->getProject($data);
+            return self::$twig->render('admin/project/client/addproject.html.twig', array(
                 'project' => $data
             ));
+          } else {
+              return self::$twig->render('admin/project/client/addproject.html.twig');
           }
       }
+
+      public function addProjectFreelance()
+      {
+          if(count($_POST) > 0){
+            $model = new ProjectModel();
+            $data = $model->addProject($_POST);
+            $data = $model->getProject($data);
+            return self::$twig->render('admin/project/freelance/creationprojectfree.html.twig', array(
+                'project' => $data
+            ));
+          } else {
+              return self::$twig->render('admin/project/freelance/creationprojectfree.html.twig');
+          }
+      }
+      
 
   }

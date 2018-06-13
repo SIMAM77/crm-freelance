@@ -19,9 +19,13 @@ projects-summary-free :
   path: /crm-freelance/project-fr?id={id}
   defaults: { _controller: 'Controller\ProjectsController::viewProjectFree' }
 
-add-projects :
-  path: /crm-freelance/addprojects
-  defaults: { _controller: 'Controller\ProjectsController::addProject' }
+add-projects-client :
+  path: /crm-client/add-projects
+  defaults: { _controller: 'Controller\ProjectsController::addProjectClient' }
+
+add-projects-freelance :
+  path: /crm-freelance/create-projects
+  defaults: { _controller: 'Controller\ProjectsController::addProjectFreelance' }
 
 
 # BACK OFFICE
