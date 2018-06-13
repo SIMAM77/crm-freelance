@@ -7,11 +7,15 @@ clients :
   path: /clients
   defaults: { _controller: 'Controller\ClientsController::listClients' }
 
+projects :
+  path: /projects
+  defaults: { _controller: 'Controller\ProjectsController::listProjects' }
+
 # BACK OFFICE
 super :
   path: /admin
   defaults: { _controller: 'Controller\PageController::goBack' }
-  
-install : 
+
+install :
   path : /install
   defaults: { _controller: 'Controller\InstallController::installDB' }

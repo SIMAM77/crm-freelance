@@ -1,0 +1,10 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+
+    <h1>Fiche Project</h1>
+    <br /><br />
+
+    {{ project|json_encode }}
+{% endblock %}
