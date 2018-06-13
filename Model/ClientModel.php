@@ -17,7 +17,7 @@ class ClientModel extends Model
     public function getAllClients(){
 
         $sql = 'SELECT id, firstname
-                FROM clients';
+                FROM client';
 
         $requete = self::$db->query($sql);
 

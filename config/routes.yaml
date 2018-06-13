@@ -1,21 +1,34 @@
 # FRONT OFFICE
 homepage :
-  path: /
+  path: /crm-freelance/
   defaults: { _controller: 'Controller\PageController::goHome' }
 
 clients :
-  path: /clients
+  path: /crm-freelance/clients
   defaults: { _controller: 'Controller\ClientsController::listClients' }
 
-projects :
-  path: /projects
+projects-list :
+  path: /crm-freelance/projects-list
   defaults: { _controller: 'Controller\ProjectsController::listProjects' }
+
+projects-summary-client :
+  path: /crm-freelance/project-cl?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::viewProjectClient' }
+
+projects-summary-free :
+  path: /crm-freelance/project-fr?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::viewProjectFree' }
+
+add-projects :
+  path: /crm-freelance/addprojects
+  defaults: { _controller: 'Controller\ProjectsController::addProject' }
+
 
 # BACK OFFICE
 super :
-  path: /admin
+  path: /crm-freelance/admin
   defaults: { _controller: 'Controller\PageController::goBack' }
 
 install :
-  path : /install
+  path : /crm-freelance/install
   defaults: { _controller: 'Controller\InstallController::installDB' }

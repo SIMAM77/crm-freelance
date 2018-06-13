@@ -11,6 +11,9 @@ use \PDO;
  */
 class ProjectModel extends Model
 {
+
+    // private $id = 1;
+
     /**
      * @return array | bool
      * @throws \Exception
@@ -29,7 +32,8 @@ class ProjectModel extends Model
      */
     public function getProject($id)
     {
-
+        $id = (int) $_GET['id'];
+    // $id = 1;
        $sql = 'SELECT id, title, description, id_user, negociation_status, milestone, status
                 FROM project
                 WHERE id = :id';
