@@ -13,7 +13,10 @@ class PageController extends Controller
         return self::$twig->render('front/home.html.twig');
     }
 
-    public function goBack()
+    /**
+     * Homepage for the freelance
+     */
+    public function goDashbordFree()
     {
         return self::$twig->render('admin/dashboard.html.twig');
     }

@@ -3,30 +3,37 @@
 
 {% block body %}
 
-    <h1>ICI NOS CLIENTS</h1>
-    <a href="/add-client">+</a>
-    <br /><br />
+    <section class="list_cust container">
+    <div class="arrow-back">
+        <a href="/dashboard"><img src="../assets/img-content/back.svg" alt="back"></a>
+    </div>
+    <div class="plus-add">
+        <a href="/add-client"><img src="../assets/img-content/add.svg" alt="add"></a>
+    </div>
 
     {% for cl in clients %}
-        <a href="/client?id={{ cl.id }}">
-        {{ cl.company }}
-        <hr />
-        {{ cl.firstname }} {{ cl.lastname }}
-        </a>
-
-        {% if cl.happiness == 0 %}
-            pas content
-        {% else %}
-            {% if cl.happiness == 1 %}
-                moyen content
-            {% else %}
-                content
-            {% endif %}
-        {% endif %}
+        <div class="list_cust-project"> 
+            <h3>
+                <a href="/client?id={{ cl.id }}">
+                    {{ cl.firstname }} {{ cl.lastname }}
+                </a>
+            </h3>
+            <p>{{ cl.company }}</p>
+            <div class="list_cust-smiley">
+                {% if cl.happiness == 0 %}
+                    <img src="../assets/img-content/unhappy.png">
+                {% else %}
+                    {% if cl.happiness == 1 %}
+                        <img src="../assets/img-content/neutral.png">
+                    {% else %}
+                        <img src="../assets/img-content/happy.png">
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
     {% endfor %}
 
-    <br />
-    <br />
-
-    {{ clients|length }} contacts
+    <div class="list_cust-total">
+         <p>{{ clients|length }} contact{% if clients|length > 0 %}s{% endif %}</p>
+    </div>
 {% endblock %}

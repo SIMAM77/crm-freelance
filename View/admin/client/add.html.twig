@@ -3,31 +3,34 @@
 
 {% block body %}
 
-    <h1>Formulaire ajout Client</h1>
-    <br /><br />
+   <div class="client_create">
+        <form method="post" action="/add-client" enctype="multipart/form-data" class="client_create-wrap">
+            
+             <div class="client_create-img">
+                <label class="input-img-label" for="file">+</label>
+                <input id="file" class="input-img" type="file" name="file">
 
-   <section class="addCust_wrapper">
-        <div class="addCust_wrapper-form">
-            <form method="post" action="/add-client" enctype="multipart/form-data">
-                <div>
-                    <label for="lastname">Nom :</label>
-                    <input type="text" name="lastname" id="lastname">
+                <div class="client_create-img--file">
+                    <img src="../assets/img-content/pers.jpg" alt="">
                 </div>
-                <div>
-                    <label for="firstname">Prénom :</label>
-                    <input type="text" name="firstname" id="firstname">
-                </div>
-                <div>
-                    <label for="company">Société :</label>
-                    <input type="text" name="company" id="company">
-                </div>
+                
+                <p>Ajoutez un logo ou une photo pour créer votre client</p>
+            </div>
 
-                <div class="addCust_wrapper-logo">
-                    <input type="file" name="file">
-                </div>
+             <div class="client_create-name client_create-stg">
+                <input type="text" name="lastname" id="lastname" aria-label="Name" placeholder="Nom">
+            </div>
 
-                <input type="submit" value="Ajouter">
-            </form>
-        </div>
-    </section>
+            <div class="client_create-firstname client_create-stg">
+                <input type="text" name="firstname" id="firstname" aria-label="Firstname" placeholder="Prénom">
+            </div>
+
+            <div class="client_create-society client_create-stg">
+                <input type="text" name="company" id="company" aria-label="Society" placeholder="Société">
+            </div>
+
+            <input type="submit" class="btn" value="Ajouter">
+        </form>
+    </div>
+
 {% endblock %}

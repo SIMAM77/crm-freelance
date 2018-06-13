@@ -18,8 +18,8 @@ add-client :
 
 # BACK OFFICE
 super :
-  path: /admin
-  defaults: { _controller: 'Controller\PageController::goBack' }
+  path: /dashboard
+  defaults: { _controller: 'Controller\PageController::goDashbordFree' }
   
 install : 
   path : /install
