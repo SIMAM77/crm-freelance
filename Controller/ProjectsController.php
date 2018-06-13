@@ -20,7 +20,7 @@
           $id = (int) $_GET['id'];
           $projects = new ProjectModel();
           $data = $client->getClient($id);
-          return self::$twig->render('admin/project/detailproject.html.twig', array(
+          return self::$twig->render('admin/project/clientproject.html.twig', array(
               'project' => $data
           ));
       }

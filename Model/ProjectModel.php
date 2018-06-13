@@ -74,7 +74,7 @@ class ProjectModel extends Model
             $requete->bindValue(':title', $statement['title'], PDO::PARAM_INT);
             $requete->bindValue(':description', $statement['description'], PDO::PARAM_STR);
             $requete->bindValue(':id_user', $statement['id_user'], PDO::PARAM_INT);
-            $requete->bindValue(':negociation_status', $statement['negociation_status'], PDO::PARAM_STR);
+            $requete->bindValue(':negociation_status', $statement['negociation_status'], PDO::PARAM_INT);
             $requete->bindValue(':milestone', $statement['milestone'], PDO::PARAM_STR);
             $requete->bindValue(':status', $statement['status'], PDO::PARAM_STR);
             $requete->execute();

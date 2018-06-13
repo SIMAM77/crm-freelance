@@ -1,0 +1,21 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+    <section class="list_project_free">
+        <div class="list_project_free-back">
+            <img src="" alt="">
+        </div>
+        <div class="list_project_free-add">
+            +
+        </div>
+        <div class="list_project_free-wrap"> 
+            <h3>{{ project.title }}</h3>
+            <p>porté par {{ client.name }}</p>
+            <div class="list_project_free-wrap">
+                {{ project.negociation_status }}
+            </div>
+        </div>
+    </section>
+{{ project|json_encode }}
+{% endblock %}
