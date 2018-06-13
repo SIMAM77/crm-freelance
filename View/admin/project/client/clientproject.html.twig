@@ -1,0 +1,37 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+
+<div class="container">
+        <nav class="nav"></nav>
+
+            <!-- page 4  -->
+            <div class="client_descr">
+                <h2 class="client_name">{{ project.title }}</h2>
+                <p class="client_name-cust">de {{ project.id_user }}</p>
+                <div class="client_documents">
+                    <a href="#" class="client_documents-file">Voir les fichiers</a>
+                    <a href="#" class="client_documents-bill">Voir les factures</a>
+                </div>
+            </div>
+
+            <div class="client_progress">
+                <ul class="client_progress-work">
+                    <li>Idéation</li>
+                    <li>Wireframing</li>
+                </ul>
+                <div class="client_progress-bill">
+                    <div class="client_progress-bill--state">
+                        Factures envoyées
+                    </div>
+                    <div class="client_progress-bill--state">
+                        Factures payées
+                    </div>
+                </div>
+            </div><!-- fin page 4 -->
+
+
+    </div>
+    {{ project|json_encode }}
+{% endblock %}

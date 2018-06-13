@@ -1,0 +1,28 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+    <div class="arrow-back">
+        <a href="/projects"><img src="../assets/img-content/back.svg" alt="back"></a>
+    </div>
+
+    <section class="project_detail background">
+        <div class="project_title">
+            <h2>{{ project.title }}</h2>
+            <h3>Porté par <a href="/client?id={{ project.id_user }}">{{ project.name }}</a></h3>
+        </div>
+
+        <div class="project_milestone">
+            <ul>
+                {% for mile in project.milestone %}
+                    <li {% if mile.status == 'done' %}class="done"{% endif %}>{{ mile.content }}</li>
+                {% endfor %}
+                <li><input type="text" name="newMilestone" value="" /></li>
+            </ul>
+        </div>
+    </section>
+
+     <section class="project_detail">
+        <a class="archieve" href="/archive-project?id={{ project.id }}">Clôturer le projet</a>
+    </section>
+{% endblock %}

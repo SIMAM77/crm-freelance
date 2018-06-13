@@ -7,16 +7,19 @@ a, a:hover, a:visited, a:focus {
 
 $blue: #3f606f; 
 $blue-light: #92aa9d;
-$grey: #d8d8d8;
+$darker-grey: #CDCBCB;
+$grey: #F1F1F1;
+$green: #79bc8e;
 $green-light: #79bc8e;
 $beige: #a7a37e;
 $red: #b64a26;
+$yellow: #f7e867;
 $white: #ffffff;
 
 body {
 	font-family: 'Asap', sans-serif;
 	font-size: 15px;
-	background-color: #f8f8f6;
+	background-color: $white;
 }
 
 

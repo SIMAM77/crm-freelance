@@ -9,6 +9,10 @@
         }
         p {
             font-size: 16px;
+            color: $blue-light;
+        }
+        a{
+            color: $blue-light !important;
         }
     }
     &-smiley {

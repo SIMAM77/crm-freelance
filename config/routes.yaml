@@ -25,6 +25,28 @@ add-client :
   path: /add-client
   defaults: { _controller: 'Controller\ClientsController::addClient' }
 
+# PROJECT
+
+projects-list :
+  path: /projects
+  defaults: { _controller: 'Controller\ProjectsController::listProjects' }
+
+projects-summary-client :
+  path: /client/project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::viewProjectClient' }
+
+projects-summary-free :
+  path: /freelance/project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::viewProjectFree' }
+
+add-projects-freelance :
+  path: /freelance/create-project
+  defaults: { _controller: 'Controller\ProjectsController::addProjectFreelance' }
+
+archive-project :
+  path: /archieve-project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::archiveProject' }
+
 # BACK OFFICE
 super :
   path: /dashboard

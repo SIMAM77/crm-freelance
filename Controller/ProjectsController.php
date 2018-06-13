@@ -1,45 +1,68 @@
 <?php
 namespace Controller;
-
 use \Helper\Controller;
 use \Model\ProjectModel;
-
 /**
  * Class ProjectsController
  * @package Controller
  */
 class ProjectsController extends Controller
 {
+      
     public function listProjects()
     {
         $projects = new ProjectModel();
         $data = $projects->getListProject();
-        return self::$twig->render('admin/project/project.html.twig', array(
+
+        return self::$twig->render('admin/project/freelance/projectList.html.twig', array(
             'projects' => $data
         ));
     }
 
-    public function viewProject()
+    public function viewProjectClient()
     {
         $id = (int) $_GET['id'];
-        $projects = new ProjectModel();
-        $data = $client->getClient($id);
-        return self::$twig->render('admin/project/clientproject.html.twig', array(
+        $project = new ProjectModel();
+        $data = $project->getProject($id);
+        return self::$twig->render('admin/project/client/clientproject.html.twig', array(
             'project' => $data
         ));
     }
-    
-    public function addClient()
+
+    public function viewProjectFree()
+    {
+        $id = (int) $_GET['id'];
+        $project = new ProjectModel();
+        $data = $project->getProject($id);
+
+        $data->milestone = unserialize($data->milestone);
+
+        return self::$twig->render('admin/project/freelance/view.html.twig', array(
+            'project' => $data
+        ));
+    }
+
+    public function addProjectFreelance()
     {
         if(count($_POST) > 0){
-                $model = new ProjectModel();
-                $data = $model->addProject($_POST);
-                $data = $model->getProject($data);
-                return self::$twig->render('admin/project/detailproject.html.twig', array(
-                    'project' => $data
-                ));
+        $model = new ProjectModel();
+        $data = $model->addProject($_POST);
+        $data = $model->getProject($data);
+        return self::$twig->render('admin/project/freelance/creationprojectfree.html.twig', array(
+            'project' => $data
+        ));
         } else {
-            return self::$twig->render('admin/project/addproject.html.twig');
+            return self::$twig->render('admin/project/freelance/creationprojectfree.html.twig');
         }
+    }
+
+    public function archiveProject()
+    {
+        $id = $_GET['id'];
+        $id = (int) $id;
+        $model = new ProjectModel();
+        $model->archieveProject($id);
+        
+        Header("Location: /projects");
     }
 }

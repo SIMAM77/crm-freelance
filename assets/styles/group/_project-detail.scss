@@ -1,0 +1,75 @@
+.project_detail{
+    padding : 30px 20px 10px;
+    .project_title{
+        text-align:center;
+
+        h2{
+            color: $blue;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        h3{
+            color: $blue-light;
+
+            a{
+                color: $beige;
+            }
+        }
+    }
+
+    .project_milestone{
+        ul{
+            margin-top:25px;
+            position: relative;
+            li {
+                padding: 0 0 10px 25px;
+                text-align: left;
+                border-left: 5px solid $darker-grey;
+                &:last-child {
+                    border-left: none;
+                    &:before {
+                        background-color: $darker-grey;
+                        content: "+";
+                        text-align: center;
+                    }
+                }
+                input{
+                    background-color: $grey;
+                    width: 100px;
+                    border-bottom: solid 1px #3f606f;
+                }
+                p {
+                    font-size: 15px; 
+                    color: $grey;
+                }
+            }
+            li:before {
+                position: absolute;
+                left: 0; 
+                content: ''; 
+                display: inline-block;
+                width: 22px;
+                height: 22px; 
+                transform: translateX(-40%);
+                border-radius: 50%; 
+                background-color: $grey;
+            }
+            li.done:before{
+                background-color: $green-light;
+            }
+        }
+    }
+
+    .archieve{
+        color: $darker-grey;
+        text-align: center;
+        font-weight:bold;
+        font-size: 15px;
+        display: block;
+    }
+}
+
+.background{
+    background-color: $grey;
+}

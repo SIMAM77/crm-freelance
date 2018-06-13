@@ -1,0 +1,35 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+    <section class="list_project_free">
+        <div class="arrow-back">
+            <a href="/dashboard"><img src="../assets/img-content/back.svg" alt="back"></a>
+        </div>
+        
+        <div class="plus-add">
+            <a href="/freelance/create-project">
+                <img src="../assets/img-content/add.svg" alt="ajouter un projet" />
+            </a>
+        </div>
+
+        {% for p in projects %}
+        <div class="list_project_free-wrap">
+            <div class="list_project_free-item">
+                <h3 class="h3"><a href="/freelance/project?id={{ p.id }}">{{ p.title }}</a></h3>
+                <p>porté par <a href="/client?id={{ p.id_user }}">{{ p.name }}</a></p>
+
+                {% if 3 == p.status %}
+                    <div class="list_project_free-progress archive">Archivé</div>
+                {% elseif 2 == p.status %}
+                    <div class="list_project_free-progress done">Terminé</div>
+                {% elseif 1 == p.status %}
+                    <div class="list_project_free-progress nego">En négociation</div>
+                {% else %}
+                    <div class="list_project_free-progress progress">En cours</div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}
