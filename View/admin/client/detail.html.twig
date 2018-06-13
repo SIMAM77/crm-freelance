@@ -46,8 +46,19 @@
             <h2>Projets attribués</h2>
         </div>
         <div class="user_details-projects--list-projects">
-            <li>Refonte HETIC : <span> In progress</span></li>
-            <li>Album Feder : <span>Done</span></li>
+            {% for p in projects %}
+                <p>{{ p.title }} : 
+                {% if 3 == p.status %}
+                    <span class="archive">Archivé</span>
+                {% elseif 2 == p.status %}
+                    <span class="">Terminé</span>
+                {% elseif 1 == p.status %}
+                    <span class="nego">En négociation</span>
+                {% else %}
+                    <span class="progress">En cours</span>
+                {% endif %}
+                </p>
+            {% endfor %}
         </div>
         </div>
         <div class="user_details-humeur">

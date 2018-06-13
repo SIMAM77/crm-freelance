@@ -45,14 +45,16 @@ class ProjectsController extends Controller
     public function addProjectFreelance()
     {
         if(count($_POST) > 0){
-        $model = new ProjectModel();
-        $data = $model->addProject($_POST);
-        $data = $model->getProject($data);
-        return self::$twig->render('admin/project/freelance/creationprojectfree.html.twig', array(
-            'project' => $data
-        ));
+            $model = new ProjectModel();
+
+            $data = $model->addProject($_POST);
+            $data = $model->getProject($data);
+
+            return self::$twig->render('admin/project/freelance/view.html.twig', array(
+                'project' => $data
+            ));
         } else {
-            return self::$twig->render('admin/project/freelance/creationprojectfree.html.twig');
+            return self::$twig->render('admin/project/freelance/add-project.html.twig');
         }
     }
 

@@ -6,6 +6,7 @@
     top: 11px;
     a {
         color: #9b9b9b;
+        margin-right: 20px;
     }
     
 }
@@ -31,18 +32,20 @@
     }
     &-name {
         position: absolute;
+        width: 60%;
         left: 95px;
         top: 40px;
         font-size: 18px;
     }
     &-firme {
         position: absolute;
+        width: 60%;
         top: 65px;
         left: 95px;
         color: #92aa9d;
     }
     &-infos {
-        padding: 5px 0;
+        padding: 5px;
         color: #92aa9d;
         font-size: 16px;
         font-weight: 400;
@@ -85,8 +88,12 @@
             &.active {
                 width: 45px;
             }
-
-        } 
+        }
+        input{
+            width:0;
+            height:0;
+            overflow: hidden;
+        }
     } 
     &--cursor {
         position: relative;
@@ -117,8 +124,12 @@
     }
 }
 .user_details-birthday {
+    margin-bottom: 30px;
     div {
         margin-bottom: 30px;
+        span {
+            color: $green-light;
+        }
     }
 }
 .user_details-notes {

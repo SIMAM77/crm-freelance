@@ -47,7 +47,7 @@ class ProjectModel extends Model
         }
         return $requete->fetch(PDO::FETCH_OBJ);
     }
-    
+
     /**
      * @param $statement
      * @return string id elem added
@@ -160,4 +160,21 @@ class ProjectModel extends Model
             throw new \Exception('Argh database');
         }
     }
+
+    public function getProjectByUser($id)
+    {
+        $sql = 'SELECT title, `status`
+                FROM project
+                WHERE id = :id';
+
+        $requete = self::$db->prepare($sql);
+        $requete->bindValue(':id', $id, PDO::PARAM_INT);
+        $requete->execute();
+
+        if ($requete->errorCode() !== "00000") {
+            throw new \Exception('pbm database');
+        }
+
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }  
 }

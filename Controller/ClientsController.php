@@ -3,6 +3,7 @@ namespace Controller;
 
 use \Helper\Controller;
 use \Model\ClientModel;
+use \Model\ProjectModel;
 /**
  * Class ClientsController
  * @package Controller
@@ -20,18 +21,23 @@ class ClientsController extends Controller
         ));
     }
 
-    public function viewClient(){
+    public function viewClient()
+    {
         $id = (int) $_GET['id'];
 
         $client = new ClientModel();
         $data = $client->getClient($id);
+
+        $projects = new ProjectModel();
+        $projects = $projects->getProjectByUser($id);
 
         // to do : add calcul to see if birthdaysoon
         $soonBirthday = false;
 
         return self::$twig->render('admin/client/detail.html.twig', array(
             'client' => $data,
-            'soonBirthday' => $soonBirthday
+            'soonBirthday' => $soonBirthday,
+            'projects' => $projects
         ));
     }
 

@@ -1,0 +1,29 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+    <section class="create_project_free background">
+        <div class="create_project_free-form">
+            <form action="/add-project" >
+                <div>
+                    <label for="todo"><input type="radio" id="todo" name="nego_status" value="todo"> Projet en cours </label>
+                    <label for="nego"><input type="radio" id="nego" name="nego_status" value="nego"> Projet en négociation</label>
+                </div>
+
+                <div>
+                    <input type="text" name="title" id="title" placeholder="Titre du Projet">
+                </div>
+
+                <div>
+                    <input type="text" name="project-etape1" id="project-etape1" placeholder="Etape 1">
+                </div>
+
+                <div>
+                    <a href="#">Ajouter une étape</a>
+                </div>
+
+                <input type="submit" value="Créer">
+            </form>
+        </div>
+    </section>
+{% endblock %}
