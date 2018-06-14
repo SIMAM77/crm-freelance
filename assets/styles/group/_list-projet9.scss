@@ -1,13 +1,13 @@
 .list_project_free {
     padding: 10px;
-    margin-top:15px;
+    margin-top:29px;
 
     &-item {
         padding: 12px 20px;
-        border-bottom: 1px solid $grey;
+        border-bottom: 1px solid $darker-grey;
 
         .h3 {
-            padding-bottom: 3px; 
+            padding-bottom: 6px; 
             a{
                 color: $blue !important; 
                 font-size: 18px; 
@@ -16,6 +16,7 @@
         p {
             color: $blue-light;
             font-size: 16px; 
+            margin-bottom: 6px;
         }
         a, a.visited, a.active {
             color: $beige !important; 
@@ -24,23 +25,7 @@
     }
     &-progress {
         padding-top: 3px; 
-        color: $red;
+        color: $darker-grey;
         font-size: 15px; 
-    }
-
-    .nego{
-        color: $red;
-    }
-
-    .done{
-        color: $green;
-    }
-
-    .progress{
-        color: $green;
-    }
-
-    .archive{
-        color: $grey;
     }
 }

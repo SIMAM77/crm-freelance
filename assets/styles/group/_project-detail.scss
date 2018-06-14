@@ -1,8 +1,18 @@
+.project-switch-state{
+    position:absolute;
+    left: 35px;
+    top:10px;
+    p{
+        display:inline-block;
+        vertical-align: top;
+        color: $beige;
+    }
+}
+
 .project_detail{
     padding: 20px;
     .project_title{
         text-align:center;
-
         h2{
             color: $blue;
             font-size: 30px;
@@ -11,37 +21,48 @@
 
         h3{
             color: $blue-light;
-
+            font-weight: 400;
             a{
                 color: $beige;
             }
         }
     }
 
+    .project_description{
+        text-align: center;
+        font-size: 16px;
+        margin: 28px 28px 35px;
+        color: $blue-light;
+        font-weight: 400;
+    }
+
     .project_milestone{
         ul{
             margin-top:25px;
+            margin-left:25px;
             position: relative;
             li {
                 padding: 0 0 10px 25px;
                 text-align: left;
+                height: 45px;
                 border-left: 5px solid $darker-grey;
+                font-weight: 400;
                 &:last-child {
-                    border-left: none;
+                    border-left: 5px solid $grey;
                     &:before {
                         background-color: $darker-grey;
-                        content: "+";
-                        text-align: center;
                     }
                 }
                 input{
                     background-color: $grey;
                     width: 100px;
-                    border-bottom: solid 1px #3f606f;
+                    border-bottom: solid 1px $blue;
+                    height: 22px;
+                    margin-top: 0;
                 }
                 p {
                     font-size: 15px; 
-                    color: $grey;
+                    color: $blue;
                 }
             }
             li:before {
@@ -53,9 +74,17 @@
                 height: 22px; 
                 transform: translateX(-40%);
                 border-radius: 50%; 
-                background-color: $grey;
+                background-color: $darker-grey;
             }
-            li.done:before{
+            li.add-mile:before{
+                content: " + ";
+                text-align: center;
+                
+            }
+            li.check{
+                border-left: 5px solid $green-light !important;
+            }
+            li.check:before{
                 background-color: $green-light;
             }
         }
@@ -67,6 +96,7 @@
         font-weight:bold;
         font-size: 15px;
         display: block;
+        margin-top: 40px;
     }
 }
 
@@ -76,4 +106,10 @@
 
 .part1{
     padding-top:65px;
+}
+
+.projectStatus{
+    position: absolute;
+    left: 68px;
+    top: 13px;
 }

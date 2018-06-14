@@ -4,12 +4,14 @@ namespace Controller;
 
 use Helper\Controller;
 use Model\ClientModel;
+use Model\ProjectModel;
 
 class PageController extends Controller
 {
 
     public function goHome()
     {   
+        
         return self::$twig->render('front/home.html.twig');
     }
 
@@ -18,6 +20,11 @@ class PageController extends Controller
      */
     public function goDashbordFree()
     {
-        return self::$twig->render('admin/dashboard.html.twig');
+        $projects = new ProjectModel();
+        $data = $projects->getListProject();
+
+        return self::$twig->render('admin/dashboard.html.twig', array(
+            'projects' => $data
+        ));
     }
 }

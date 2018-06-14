@@ -2,6 +2,7 @@
 namespace Controller;
 use \Helper\Controller;
 use \Model\ProjectModel;
+use \Model\ClientModel;
 /**
  * Class ProjectsController
  * @package Controller
@@ -44,6 +45,13 @@ class ProjectsController extends Controller
 
     public function addProjectFreelance()
     {
+        $idClient = $_GET['idClient'];
+        $idClient = (int) $idClient;
+
+        $client = new ClientModel();
+        $client = $client->getClient($idClient);
+
+
         if(count($_POST) > 0){
             $model = new ProjectModel();
 
@@ -54,7 +62,34 @@ class ProjectsController extends Controller
                 'project' => $data
             ));
         } else {
-            return self::$twig->render('admin/project/freelance/add-project.html.twig');
+            return self::$twig->render('admin/project/freelance/add-project.html.twig', array('client' => $client));
+        }
+    }
+
+    public function updateProject()
+    {
+        $id = $_GET['id'];
+        $id = (int) $id;
+        $model = new ProjectModel();
+
+        if(count($_POST) > 0){
+
+            $data = $model->updateProject($_POST, $id);
+            $data = $model->getProject($id);
+
+            $data->milestone = unserialize($data->milestone);
+
+            return self::$twig->render('admin/project/freelance/view.html.twig', array(
+                'project' => $data
+            ));
+        }  else {
+
+            $data = $model->getProject($id);         
+            $data->milestone = unserialize($data->milestone);
+               
+            return self::$twig->render('admin/project/freelance/update-project.html.twig', array(
+                'project' => $data
+            ));
         }
     }
 
@@ -66,5 +101,25 @@ class ProjectsController extends Controller
         $model->archieveProject($id);
         
         Header("Location: /projects");
+    }
+
+    public function reopenProject()
+    {
+        $id = $_GET['id'];
+        $id = (int) $id;
+        $model = new ProjectModel();
+        $model->reopenProject($id);
+        
+        Header("Location: freelance/project?id=$id");
+    }
+
+    public function finishProject()
+    {
+        $id = $_GET['id'];
+        $id = (int) $id;
+        $model = new ProjectModel();
+        $model->finishProject($id);
+        
+        Header("Location: freelance/project?id=$id");
     }
 }

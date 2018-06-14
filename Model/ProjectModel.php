@@ -26,14 +26,15 @@ class ProjectModel extends Model
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
 
-        /**
+    /**
      * @param $id
      * @return array | bool
      * @throws \Exception
      */
-    public function getProject($id)
+    public function getProject()
     {
         $id = (int) $_GET['id'];
+
         $sql = 'SELECT p.id, title, `description`, id_user, negociation_status, milestone, `status`, c.firstname as `name`
                 FROM project p
                 LEFT JOIN client c ON p.id_user = c.id
@@ -56,37 +57,57 @@ class ProjectModel extends Model
     public function addProject($statement)
     {
         if(is_array($statement)){
+
+            $milestone = array();
+
+            $i = 0;
+            foreach($statement['project-etape'] as $step){
+                $val = 0;
+                if(isset($statement['project-state'][$i]) && 'on' == $statement['project-state'][$i]){
+                    $val = 1;
+                }
+                $i++;
+
+                array_push($milestone, array('content' => $step, 'status' => $val));
+            }   
+
+            $milestone = serialize($milestone);
+
             $dNow = new \DateTime();
             $sql = 'INSERT INTO project(
                       id,
                       title,
-                      description,
+                      `description`,
                       id_user,
                       negociation_status,
                       milestone,
-                      status,
-                    )
-                    VALUES(
+                      `status`
+                    ) VALUES (
                       NULL,
                       :title,
                       :description,
                       :id_user,
-                      :negociation_status,
+                      "0",
                       :milestone,
-                      status,
+                      :status
                     )';
+
             $requete = self::$db->prepare($sql);
-            $requete->bindValue(':title', $statement['title'], PDO::PARAM_INT);
+
+            $requete->bindValue(':title', $statement['title'], PDO::PARAM_STR);
             $requete->bindValue(':description', $statement['description'], PDO::PARAM_STR);
             $requete->bindValue(':id_user', $statement['id_user'], PDO::PARAM_INT);
-            $requete->bindValue(':negociation_status', $statement['negociation_status'], PDO::PARAM_INT);
-            $requete->bindValue(':milestone', $statement['milestone'], PDO::PARAM_STR);
+            $requete->bindValue(':milestone', $milestone);
             $requete->bindValue(':status', $statement['status'], PDO::PARAM_STR);
+
             $requete->execute();
+
             if ($requete->errorCode() !== "00000") {
                 throw new \Exception('error database');
             }
+
             return (int) self::$db->lastInsertId();
+
         } else {
             throw new \Exception('statement is not an array');
         }
@@ -149,7 +170,37 @@ class ProjectModel extends Model
     public function archieveProject($id)
     {
         $sql = 'UPDATE project
-                SET `status` = 3,
+                SET `status` = "3"
+                WHERE id = :id';
+
+        $requete = self::$db->prepare($sql);
+        $requete->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $requete->execute();
+        if ($requete->errorCode() !== "00000") {
+            throw new \Exception('Argh database');
+        }
+    }
+
+    public function reopenProject($id)
+    {
+        $sql = 'UPDATE project
+                SET `status` = "1"
+                WHERE id = :id';
+
+        $requete = self::$db->prepare($sql);
+        $requete->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $requete->execute();
+        if ($requete->errorCode() !== "00000") {
+            throw new \Exception('Argh database');
+        }
+    }
+
+    public function finishProject($id)
+    {
+        $sql = 'UPDATE project
+                SET `status` = "2"
                 WHERE id = :id';
 
         $requete = self::$db->prepare($sql);
@@ -163,7 +214,7 @@ class ProjectModel extends Model
 
     public function getProjectByUser($id)
     {
-        $sql = 'SELECT title, `status`
+        $sql = 'SELECT id, title, `status`
                 FROM project
                 WHERE id = :id';
 

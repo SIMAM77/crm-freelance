@@ -34,8 +34,8 @@ h2, h3, .h2, .h3, label {
 
 .arrow-back {
 	position : absolute;
-	top: 8px;
-	left: 8px;
+	top: 15px;
+    left: 15px;
 	transform: rotate(90deg);
 }
 
@@ -47,24 +47,27 @@ li {
 	position: absolute;
 	top: 12px;
 	right: 17px;
-}
-
-.btn {
-	display: block;
-	width: 130px;
-	border: 1px solid $beige;
-	color: $beige;
-	font-size: 18px; 
-	padding: 10px 28px; 
-	margin: 18px auto;
-	cursor: pointer;
-	background-color: #FFF;
+	a{
+		color: $beige;
+	}
+	img{
+		display:inline-block;
+		vertical-align: middle;
+		margin-right: 5px;
+    	height: 23px;
+	}
 }
 
 .has-bckgd {
 	background-color: $grey; 
 }
 
+
+textarea {
+	width: 80%;
+	display: block;
+	padding: 5px;
+}
 
 input {
 	width: 100%;
@@ -81,6 +84,53 @@ input {
 	}
 }
 
-textarea {
-	width: 100%;
+.btn {
+	display: block;
+	width: 130px;
+	border: 2px solid $beige;
+	color: $beige;
+	font-size: 18px; 
+	padding: 10px 28px; 
+	margin: 18px auto;
+	cursor: pointer;
+	height: auto;
+	background:none;
+}
+
+.round{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-radius: 100%;
+	vertical-align: bottom;
+    margin-right: 7px;
+}
+
+.nego{
+	background: $red;
+}
+
+.done{
+	background: $green;
+}
+
+.progress{
+	background: $yellow;
+}
+
+.archive{
+	background: $darker-grey;
+}
+
+
+h1{
+	text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+	margin: 86px 0 30px;
+	color: $blue;
+}
+
+h1.project{
+	margin: 20px 0 30px;
 }

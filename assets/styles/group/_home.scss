@@ -1,0 +1,19 @@
+.dashboard{
+    background: $white;
+    height: 100vh;
+    .client_descr{
+        img{
+            width: 80%;
+            margin: 10px auto 50px;
+        }
+
+        background: $grey
+    }
+
+    p{
+        margin-top: 28vh;
+        text-align: center;
+        color: $darker-grey;
+    }
+
+}

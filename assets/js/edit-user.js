@@ -14,6 +14,8 @@ for(let i = 0; i < option.length; i++){
 }
 
 var money = document.querySelector('.money');
+var moneyValue = document.querySelector('.money-humeur input'); 
+moneyValue.value = 0;
 money.addEventListener('touchstart', mouseDown, false);
 window.addEventListener('touchend', mouseUp, false);
 
@@ -26,5 +28,19 @@ function mouseDown(){
 }
 
 function divMove(e){
-    document.querySelector('.money').style.left = e.touches[0].clientX + 'px';
+    if (e.touches[0].clientX > 245){
+        money.style.left = '245px';
+        money.style.transform = "scale(1.4)";
+        moneyValue.value = 245;
+    } else if (e.touches[0].clientX < 20){
+        money.style.left = '20px';
+        money.style.transform = "scale(0.9)";
+        moneyValue.value = 20;
+    } else if (e.touches[0].clientX < 123) {
+        money.style.transform = "scale(1.1)";
+        moneyValue.value = 123;
+    } else {
+        money.style.left = e.touches[0].clientX + 'px';
+        moneyValue.value = e.touches[0].clientX;
+    }
 }

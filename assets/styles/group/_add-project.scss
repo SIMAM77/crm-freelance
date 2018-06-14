@@ -1,0 +1,107 @@
+.create_project_free {
+    position: relative;
+    font-size: 16px;
+    height: 100vh; 
+    background-color: $grey;
+    &-form {
+        width: 90%;
+        margin: 60px auto 20px;
+        padding: 30px 20px 12px; 
+        background-color: #FFF;
+    }
+    &-item, &-choice {
+        display: flex;
+        flex-wrap: wrap;
+        &:last-of-type {
+            justify-content: center;
+        }
+    }
+    &-choice {
+        margin: 15px 0 15px;
+        input {
+            width: auto;
+            height: auto;
+            margin-right: 5px;
+        }
+    }
+   
+    &-newstep {
+        padding-top: 3px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .btn{
+        background: $white !important;
+    }
+
+    .item-nego {
+        flex-basis: 100%;
+        margin-bottom: 10px;
+    }
+    label {
+        color: #000;
+    }
+    input[type="text"] {
+        width: 80%;
+        height: 25px;
+        margin-bottom: 10px;
+        padding-bottom: 5px; 
+        padding-left: 5px; 
+        font-size: 16px; 
+        border-bottom: 1px solid $blue;
+        &::placeholder {
+            color: $blue-light;
+        }
+    }
+    .item--state {
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+    }
+    .item--state-edit{
+        margin-bottom: 40px;
+        color: $darker-grey;
+        text-align: center;
+    }
+    .wrap-state {
+        width: 15%; 
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        input {
+            width: auto; 
+            margin: 0 10px 0 0;
+        }
+        img {
+            width: 10px; 
+            height: 10px;
+            color: $red; 
+        }
+    }
+}
+
+.descriptionEtatSuper{
+    margin-left: 10px;
+    color: $darker-grey;
+}
+
+.textDescriptionProjet{
+    margin:10px 0 20px;
+    width:100%;
+    color: $blue-light;
+    border-bottom: 1px solid $blue;
+    &::placeholder {
+        color: $blue-light;
+        font-size:15px;
+    }
+}
+
+.btn-add-project{
+    color: $darker-grey;
+    margin-top:10px;
+}
+
+.newP{
+    margin: 0 0 10px;
+}

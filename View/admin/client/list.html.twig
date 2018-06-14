@@ -8,25 +8,15 @@
             <a href="/dashboard"><img src="../assets/img-content/back.svg" alt="back"></a>
         </div>
         <div class="plus-add">
-            <a href="/add-client"><img src="../assets/img-content/add.svg" alt="add"></a>
+            <a href="/add-client"><img src="../assets/img-content/add.svg" alt="add"> Ajouter un client</a>
         </div>
 
+        <h1>Liste des clients</h1>
         {% for cl in clients %}
             <div class="list_cust-project"> 
                 <a href="/client?id={{ cl.id }}">
                     <h3>{{ cl.firstname }} {{ cl.lastname }}</h3>
                     <p>{{ cl.company }}</p>
-                    <div class="list_cust-smiley">
-                        {% if cl.happiness == 0 %}
-                            <img src="../assets/img-content/unhappy.png">
-                        {% else %}
-                            {% if cl.happiness == 1 %}
-                                <img src="../assets/img-content/neutral.png">
-                            {% else %}
-                                <img src="../assets/img-content/happy.png">
-                            {% endif %}
-                        {% endif %}
-                    </div>
                 </a>
             </div>
         {% endfor %}

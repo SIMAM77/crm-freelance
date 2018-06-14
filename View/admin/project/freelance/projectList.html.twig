@@ -6,13 +6,8 @@
         <div class="arrow-back">
             <a href="/dashboard"><img src="../assets/img-content/back.svg" alt="back"></a>
         </div>
-        
-        <div class="plus-add">
-            <a href="/freelance/create-project">
-                <img src="../assets/img-content/add.svg" alt="ajouter un projet" />
-            </a>
-        </div>
-
+    
+        <h1 class="project">Liste des projets</h1>
         {% for p in projects %}
         <div class="list_project_free-wrap">
             <div class="list_project_free-item">
@@ -20,13 +15,13 @@
                 <p>porté par <a href="/client?id={{ p.id_user }}">{{ p.name }}</a></p>
 
                 {% if 3 == p.status %}
-                    <div class="list_project_free-progress archive">Archivé</div>
+                    <div class="list_project_free-progress"><span class="round archive"></span> Archivé</div>
                 {% elseif 2 == p.status %}
-                    <div class="list_project_free-progress done">Terminé</div>
-                {% elseif 1 == p.status %}
-                    <div class="list_project_free-progress nego">En négociation</div>
+                    <div class="list_project_free-progress"><span class="round done"></span> Terminé</div>
+                {% elseif 0 == p.status %}
+                    <div class="list_project_free-progress"><span class="round nego"></span> En négociation</div>
                 {% else %}
-                    <div class="list_project_free-progress progress">En cours</div>
+                    <div class="list_project_free-progress"><span class="round progress"></span> En cours</div>
                 {% endif %}
             </div>
         </div>

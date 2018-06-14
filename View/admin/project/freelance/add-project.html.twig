@@ -2,28 +2,57 @@
 {% block title %}Project{% endblock %}
 
 {% block body %}
+
+    <div class="arrow-back">
+        <a href="/client?id={{ client.id }}"><img src="../assets/img-content/back.svg" alt="back"></a>
+    </div>
+
     <section class="create_project_free background">
         <div class="create_project_free-form">
-            <form action="/add-project" >
-                <div>
-                    <label for="todo"><input type="radio" id="todo" name="nego_status" value="todo"> Projet en cours </label>
-                    <label for="nego"><input type="radio" id="nego" name="nego_status" value="nego"> Projet en négociation</label>
+            <h1 class="newP">Création d'un projet</h1>
+            <div class="item--state-edit">
+                <p>porté par <span>{{ client.firstname }}</span></p>
+            </div>
+
+            <form action="/create-project" method="post">
+
+                <div class="create_project_free-choice">    
+                    <label for="status" class="input_switch">
+                        <input id="status" name="status" type="hidden" value="0" />
+                        <span></span>
+                    </label>
+                    <p class="descriptionEtatSuper">En négociation</p> 
                 </div>
 
-                <div>
-                    <input type="text" name="title" id="title" placeholder="Titre du Projet">
+                <div class="create_project_free-project item--state">
+                    <input type="text" name="title" id="title" required placeholder="Nom du Projet">
                 </div>
 
-                <div>
-                    <input type="text" name="project-etape1" id="project-etape1" placeholder="Etape 1">
-                </div>
+            
+                
 
                 <div>
-                    <a href="#">Ajouter une étape</a>
+                    <textarea name="description" required placeholder="Description du Projet" class="textDescriptionProjet"></textarea>
                 </div>
 
-                <input type="submit" value="Créer">
+                <div class="list">
+                    <div class="create_project_free-item item--state">
+                        <input type="text" name="project-etape[]" id="project-etape1" placeholder="Etape 1 du projet" value="">
+                        <div class="wrap-state">
+                            <input type="checkbox" name="project-state[]">
+                            <img src="../assets/img-content/cross.svg" alt="supprimer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="create_project_free-newstep">
+                    <p class="btn-add-project">ajouter une étape au projet</p>
+                </div>
+
+                <input type="submit" class="btn youhou" value="Créer">
             </form>
         </div>
     </section>
+
+    <script src="../assets/js/add-project.js"></script>
 {% endblock %}

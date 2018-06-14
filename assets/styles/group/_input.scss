@@ -10,7 +10,7 @@
 .input_switch input {display:none;}
 
 /* The slider */
-.slider {
+.input_switch span {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -18,40 +18,35 @@
   right: 0;
   bottom: 0;
   border-radius: 17px;
-  background-color: red;
+  background-color: $red;
+  -webkit-transition: .4s;
+  transition: all .4s ease;
+  &:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background-color: $white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+}
+
+.input_switch .slider {
+  background-color: $green-light;
   -webkit-transition: .4s;
   transition: .4s;
+  &:before {
+    transform: translateX(12px);
+  }
+  &:before {
+    right: 2px;
+  }
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 13px;
-  width: 13px;
-  left: 2px;
-  bottom: 2px;
-  border-radius: 50%;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider.slider-off {
-  background-color: green;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-.slider.slider-off:before {
-  right: 2px;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
 
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
