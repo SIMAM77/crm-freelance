@@ -18,7 +18,8 @@ class ClientModel extends Model
      */
     public function getListClient(){
         $sql = 'SELECT id, firstname, lastname, company, last_happiness 
-                FROM client';
+                FROM client
+                ORDER BY lastname';
 
         $requete = self::$db->query($sql);
 
@@ -130,6 +131,11 @@ class ClientModel extends Model
      */
     public function updateClient($statement, $id)
     {
+
+        if("" == $statement['date_of_birth']){
+            $statement['date_of_birth'] = NULL;
+        }
+
         if(is_array($statement) && is_int($id)){
             $sql = 'UPDATE client 
                     SET 
@@ -138,7 +144,7 @@ class ClientModel extends Model
                         company = :company, 
                         picture = :picture, 
                         date_of_birth = :date_of_birth,
-                        address = :address,
+                        `address` = :address,
                         email = :email,
                         phone_number = :phone_number,
                         budget = :budget,

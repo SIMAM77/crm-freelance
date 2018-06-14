@@ -8,7 +8,7 @@
             <a href="/freelance/project?id={{ project.id }}"><img src="../assets/img-content/back.svg" alt="back"></a>
         </div>
         
-        <form action="/create-project" method="post">
+        <form action="/edit-project?id={{ project.id }}" method="post">
             <nav class="nav">
                 <div class="nav-wrap">
                     <input class="link" type="submit" value="Terminer" />
@@ -22,7 +22,7 @@
 
                 <div class="create_project_free-choice">    
                     <label for="status" class="input_switch">
-                        <input id="status" name="status" type="hidden" value="0" />
+                        <input id="status" name="status" type="hidden" value="{{ project.status }}" />
                         <span {% if 1 == project.status %}class="slider"{% endif %}></span>
                     </label>
                     <p class="descriptionEtatSuper">
@@ -37,7 +37,8 @@
                 <input type="hidden" value="{{ project.id_user }}" name="id_user" />
 
                 <div>
-                    <textarea name="description" required placeholder="Description du Projet" style="margin:10px 0;width:100%;color:#000;" class="textDescriptionProjet"></textarea>
+                    <textarea name="description" required placeholder="Description du Projet" style="margin:10px 0;width:100%;color:#000;" class="textDescriptionProjet">{{ project.description }}
+                    </textarea>
                 </div>
                 <div class="user_details-humeur--wrapper">
                     <div class="user_details-humeur--title" style="margin-left: 0;">
@@ -51,20 +52,22 @@
                 </div>
                 <div class="list">
                     {% if project.milestone|length > 0 and project.milestone[0]|length > 0 %}
+                        {% set num = 1 %}
                         {% for mile in project.milestone %}
                             <div class="create_project_free-item item--state">
                                 <input type="text" name="project-etape[]" id="project-etape1" value="{{ mile.content }}">
                                 <div class="wrap-state">
-                                    <input type="checkbox" name="project-state[]" {% if mile.status == 'done' %}checked{% endif %}>
+                                    <input type="checkbox" name="project-state[]" {% if mile.status == 'done' %}checked{% endif %} value="{{ num }}">
                                     <img src="../assets/img-content/cross.svg" alt="supprimer">
                                 </div>
                             </div>
+                            {% set num = num + 1 %}
                         {% endfor %}
                     {% else %}
                         <div class="create_project_free-item item--state">
                             <input type="text" name="project-etape[]" id="project-etape1" placeholder="Etape 1 du projet" value="">
                             <div class="wrap-state">
-                                <input type="checkbox" name="project -state[]">
+                                <input type="checkbox" name="project -state[]" value="1">
                                 <img src="../assets/img-content/cross.svg" alt="supprimer">
                             </div>
                         </div>

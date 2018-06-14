@@ -4,6 +4,7 @@ namespace Controller;
 use \Helper\Controller;
 use \Model\ClientModel;
 use \Model\ProjectModel;
+
 /**
  * Class ClientsController
  * @package Controller
@@ -72,11 +73,8 @@ class ClientsController extends Controller
                     
                     $model = new ClientModel();
                     $data = $model->addClient($_POST);
-                    $data = $model->getClient($data);
 
-                    return self::$twig->render('admin/client/detail.html.twig', array(
-                        'client' => $data
-                    ));
+                    Header("Location: /client?id=$data");
                 }
                 else{
                     throw new \Exception('error during upload');
@@ -101,11 +99,8 @@ class ClientsController extends Controller
             if(count($_POST) > 0){
 
                 $data = $model->updateClient($_POST, $id);
-                $data = $model->getClient($id);
 
-                return self::$twig->render('admin/client/detail.html.twig', array(
-                    'client' => $data
-                ));
+                Header("Location: /client?id=$id");
             }  else {
 
                 $data = $model->getClient($id);            
@@ -116,5 +111,16 @@ class ClientsController extends Controller
         } else {
             return self::$twig->render('admin/login.html.twig');
         }
+    }
+
+    public function deleteClient()
+    {
+        $id = $_GET['id'];
+        $id = (int) $id;
+
+        $model = new ClientModel();
+        $model->removeClient($id);
+
+        Header("Location: /clients");
     }
 }

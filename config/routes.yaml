@@ -3,10 +3,14 @@ homepage :
   path: /
   defaults: { _controller: 'Controller\PageController::goHome' }
 
+# FREELANCE
+super :
+  path: /dashboard
+  defaults: { _controller: 'Controller\PageController::goDashbordFree' }
+  
 login :
   path: /login
   defaults: { _controller: 'Controller\PageController::userLogin' }
-
 
 # CLIENT
 clients :
@@ -23,7 +27,7 @@ edit-client :
 
 delete-client :
   path: /delete-client?id={id}
-  defaults: { _controller: 'Controller\ClientsController::removeClient' }
+  defaults: { _controller: 'Controller\ClientsController::deleteClient' }
 
 
 add-client :
@@ -63,12 +67,6 @@ edit-project :
   path: /edit-project?id={id}
   defaults: { _controller: 'Controller\ProjectsController::updateProject' }
 
-
-# BACK OFFICE
-super :
-  path: /dashboard
-  defaults: { _controller: 'Controller\PageController::goDashbordFree' }
-  
-install : 
-  path : /install
-  defaults: { _controller: 'Controller\InstallController::installDB' }
+delete-project :
+  path: /delete-project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::removeProject' }

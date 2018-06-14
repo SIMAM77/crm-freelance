@@ -3,6 +3,7 @@ namespace Controller;
 use \Helper\Controller;
 use \Model\ProjectModel;
 use \Model\ClientModel;
+
 /**
  * Class ProjectsController
  * @package Controller
@@ -58,23 +59,22 @@ class ProjectsController extends Controller
     public function addProjectFreelance()
     {
         if($_SESSION['valid'] == true){
-            $idClient = $_GET['idClient'];
-            $idClient = (int) $idClient;
-
-            $client = new ClientModel();
-            $client = $client->getClient($idClient);
-
-
+            
             if(count($_POST) > 0){
                 $model = new ProjectModel();
 
                 $data = $model->addProject($_POST);
-                $data = $model->getProject($data);
+                
+                Header("Location: /freelance/project?id=$data");
 
-                return self::$twig->render('admin/project/freelance/view.html.twig', array(
-                    'project' => $data
-                ));
             } else {
+
+                $idClient = $_GET['idClient'];
+                $idClient = (int) $idClient;
+
+                $client = new ClientModel();
+                $client = $client->getClient($idClient);
+
                 return self::$twig->render('admin/project/freelance/add-project.html.twig', array('client' => $client));
             }
         } else {
@@ -92,13 +92,8 @@ class ProjectsController extends Controller
             if(count($_POST) > 0){
 
                 $data = $model->updateProject($_POST, $id);
-                $data = $model->getProject($id);
-
-                $data->milestone = unserialize($data->milestone);
-
-                return self::$twig->render('admin/project/freelance/view.html.twig', array(
-                    'project' => $data
-                ));
+                
+                Header("Location: /freelance/project?id=$id");
             }  else {
 
                 $data = $model->getProject($id);         
@@ -153,5 +148,16 @@ class ProjectsController extends Controller
         }  else {
             return self::$twig->render('admin/login.html.twig');
         }
+    }
+
+    public function removeProject()
+    {
+        $id = $_GET['id'];
+        $id = (int) $id;
+
+        $model = new ProjectModel();
+        $model->removeProject($id);
+
+        Header("Location: /projects");
     }
 }

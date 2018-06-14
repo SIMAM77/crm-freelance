@@ -64,19 +64,33 @@
         {% endif %}
     </section>
 
+    <section class="project_detail">
     {% if 2 == project.status %}
-        <section class="project_detail">
-            <a class="archieve" href="/archieve-project?id={{ project.id }}">Archiver le projet</a>
-            <br />
-            <a class="archieve" href="/reopen-project?id={{ project.id }}">Rouvrir le projet</a>
-        </section>
+        <a class="archieve" href="/archieve-project?id={{ project.id }}">Archiver le projet</a>
+        <br />
+        <a class="archieve" href="/reopen-project?id={{ project.id }}">Rouvrir le projet</a>
     {% elseif 3 == project.status %}
-        <section class="project_detail">
-            <a class="archieve" href="/reopen-project?id={{ project.id }}">Rouvrir le projet</a>
-        </section>
+        <a class="archieve" href="/reopen-project?id={{ project.id }}">Rouvrir le projet</a>
     {% elseif 3 != project.status %}
-        <section class="project_detail">
-            <a class="archieve" href="/finish-project?id={{ project.id }}">Terminer le projet</a>
-        </section>
+        <a class="archieve" href="/finish-project?id={{ project.id }}">Terminer le projet</a>
     {% endif %}
+        <br />
+        <a href="#popin1" class="archieve open-popin">Supprimer le projet</a>
+    </section>
+
+    <div class="smart-popin project_detail" id="popin1">
+        <div class="sp-table">
+            <div class="sp-cell">
+                <div class="sp-body">
+                    <a href="#" class="sp-close">×</a>
+                    <p>Confirmer la suppression du projet {{ project.title }}.</p>
+                    <p> Toute suppression est définitive.</p>
+                    <a href="/delete-project?id={{ project.id }}" class="archieve confirmation-delete">Confirmer la suppression</a>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    
+        
 {% endblock %}

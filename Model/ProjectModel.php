@@ -60,15 +60,19 @@ class ProjectModel extends Model
 
             $milestone = array();
 
-            $i = 0;
+            $i = 1;
             foreach($statement['project-etape'] as $step){
-                $val = 0;
-                if(isset($statement['project-state'][$i]) && 'on' == $statement['project-state'][$i]){
-                    $val = 1;
+                if("" != $step){
+                    $val = false;
+                    foreach($statement['project-state'] as $state){
+                        if($state == $i){
+                            $val = true;
+                        }
+                    }
+            
+                    array_push($milestone, array('content' => $step, 'status' => $val));
                 }
                 $i++;
-
-                array_push($milestone, array('content' => $step, 'status' => $val));
             }   
 
             $milestone = serialize($milestone);
@@ -142,23 +146,47 @@ class ProjectModel extends Model
     public function updateProject($statement, $id)
     {
         if(is_array($statement) && is_int($id)){
+
+            $milestone = array();
+
+            $i = 1;
+            foreach($statement['project-etape'] as $step){
+                if("" != $step){
+                    $val = false;
+                    foreach($statement['project-state'] as $state){
+                        if($state == $i){
+                            $val = true;
+                        }
+                    }
+            
+                    array_push($milestone, array('content' => $step, 'status' => $val));
+                }
+                $i++;
+            }   
+
+            $milestone = serialize($milestone);
+
             $sql = 'UPDATE project
-                    SET
-                        title = :title,
-                        description = :description,
+                    SET title = :title,
+                        `description` = :description,
                         id_user = :id_user,
                         negociation_status = :negociation_status,
                         milestone = :milestone,
-                        status = :status,
+                        `status` = :status
                     WHERE id = :id';
+
             $requete = self::$db->prepare($sql);
+
             $requete->bindValue(':id', $id, PDO::PARAM_INT);
             $requete->bindValue(':title', $statement['title'], PDO::PARAM_INT);
+            $requete->bindValue(':description', $statement['description'], PDO::PARAM_STR);
             $requete->bindValue(':id_user', $statement['id_user'], PDO::PARAM_STR);
             $requete->bindValue(':negociation_status', $statement['negociation_status'], PDO::PARAM_STR);
-            $requete->bindValue(':milestone', $statement['milestone'], PDO::PARAM_STR);
+            $requete->bindValue(':milestone', $milestone);
             $requete->bindValue(':status', $statement['status']);
+
             $requete->execute();
+            
             if ($requete->errorCode() !== "00000") {
                 throw new \Exception('Argh database');
             }
