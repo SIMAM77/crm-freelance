@@ -3,6 +3,11 @@ homepage :
   path: /
   defaults: { _controller: 'Controller\PageController::goHome' }
 
+login :
+  path: /login
+  defaults: { _controller: 'Controller\PageController::userLogin' }
+
+
 # CLIENT
 clients :
   path: /clients
