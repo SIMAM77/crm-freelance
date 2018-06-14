@@ -1,0 +1,26 @@
+.project_detail {
+    font-weight: 700;
+    text-align: center;
+    a {
+        color: $beige;
+    }
+    
+
+}
+.create_project_free-edit {
+    height: auto;
+    position: initial;
+}
+.create_project_free-form-edit {
+    padding: 15px;
+    top: 62% !important;
+    margin-bottom: 30px;
+    form {
+        background: $white;
+        
+    }
+
+    p{
+        color: $darker-grey;
+    }
+}

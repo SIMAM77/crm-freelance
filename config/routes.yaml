@@ -17,13 +17,47 @@ edit-client :
   defaults: { _controller: 'Controller\ClientsController::updateClient' }
 
 delete-client :
-  path: /delete-client
+  path: /delete-client?id={id}
   defaults: { _controller: 'Controller\ClientsController::removeClient' }
 
 
 add-client :
   path: /add-client
   defaults: { _controller: 'Controller\ClientsController::addClient' }
+
+# PROJECT
+projects-list :
+  path: /projects
+  defaults: { _controller: 'Controller\ProjectsController::listProjects' }
+
+projects-summary-client :
+  path: /client/project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::viewProjectClient' }
+
+projects-summary-free :
+  path: /freelance/project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::viewProjectFree' }
+
+add-projects-freelance :
+  path: /create-project?idClient={id}
+  defaults: { _controller: 'Controller\ProjectsController::addProjectFreelance' }
+
+archive-project :
+  path: /archieve-project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::archiveProject' }
+
+finish-project :
+  path: /finish-project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::finishProject' }
+
+reopen-project :
+  path: /reopen-project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::reopenProject' }
+
+edit-project :
+  path: /edit-project?id={id}
+  defaults: { _controller: 'Controller\ProjectsController::updateProject' }
+
 
 # BACK OFFICE
 super :

@@ -3,110 +3,115 @@
 
 {% block body %}
 
+    <div class="arrow-back">
+        <a href="/client?id={{ client.id }}"><img src="../assets/img-content/back.svg" alt="back"></a>
+    </div>
+    
     <form method="post" action="/edit-client?id={{ client.id }}">
         <nav class="nav">
             <div class="nav-wrap">
-                
+                <input class="link" type="submit" value="Terminer" />
             </div>
         </nav>
 
-        <section class="introduction container">
+        <section class="introduction">
+
             <div class="user_details">
-                <div class="user_details-logo">
+                <div class="user_details-logo edit-logo">
                     <img src="../assets/upload/{{ client.picture }}" alt="image de {{ client.firstname }}">
                 </div>
-                <div class="user_details-name">
-                    <input type="text" name="lastname" id="lastname" aria-label="Name" placeholder="Nom" value="{{ client.lastname }}" >
-                    <input type="text" name="firstname" id="firstname" aria-label="Name" placeholder="Nom" value="{{ client.firstname }}" >
+
+                <div class="user_details-firstname edit-firstname">
+                    <input type="text" name="firstname" id="firstname-customer" placeholder="Votre prénom." value="{{ client.firstname }}">
+                </div>
+                <div class="user_details-lastname edit-lastname">
+                    <input type="text" name="lastname" id="lastname-customer" placeholder="Votre nom." value="{{ client.lastname }}">
                 </div>
 
-                    <input type="hidden" name="picture" value="{{ client.picture }}" >
+                <input type="hidden" name="picture" value="{{ client.picture }}" >
                         
-
-                <div class="user_details-firme">
-                    <input type="text" name="company" id="company" aria-label="Society" placeholder="Société" value="{{ client.company }}">
+                <div class="user_details-firme edit-firme">
+                    <input type="text" name="company" id="firme-customer" aria-label="Society" placeholder="Société" value="{{ client.company }}">
                 </div>         
             </div>
-            <div class="user_details">
-                <div class="user_details-wrap">
+
+            <div class="user_details edit-container">
+                <div class="user_details-wrap edit-cust">
                     <div class="user_details-infos">
-                        <input type="text" name="email" id="email" aria-label="email" placeholder="Email" value="{{ client.email }}">
+                        <label for="mail-customer">Mail</label>
+                        <input type="email" name="email" id="mail-customer" aria-label="email" placeholder="exemple@gmail.com" value="{{ client.email }}">
                     </div>
+
                     <div class="user_details-infos">
-                        <input type="text" name="phone_number" id="phone" aria-label="phone" placeholder="téléphone portable" value="{{ client.phone_number }}">
+                        <label for="mobile-customer">Mobile</label>
+                        <input type="text" name="phone_number" id="phone" id="mobile-customer" aria-label="phone" placeholder="téléphone portable" value="{{ client.phone_number }}">
                     </div>
+
                     <div class="user_details-infos">
-                        <input type="text" name="address" id="address" aria-label="address" placeholder="address" value="{{ client.address }}">
+                        <label for="address-customer">Adresse</label>
+                        <input type="text" name="address" id="address-customer" aria-label="address" placeholder="address" value="{{ client.address }}">
                     </div>
                 </div>
-                
             </div>
            
             <div class="user_details-humeur">
                 <div class="user_details-humeur--wrapper">
                     <div class="user_details-humeur--title">
-                        <h2>Humeur Current</h2> 
+                        <h2>Dernière humeur </h2> 
                     </div>
                     <div class="user_details-humeur--emoji">
 
-                        <label>
-                            <img src="../assets/img-content/unhappy.png" alt="pas content">
-                            <input type="radio" value="0" />
+                        <label for="happy1">
+                            <img src="../assets/img-content/unhappy.png" alt="pas content" {% if 0 == client.last_happiness %}class="happyIco active"{% else %}class="happyIco"{% endif %}>
+                            <input type="radio" id="happy1" name="last_happiness" value="0" {% if 0 == client.last_happiness %} checked {% endif %} />
                         </label>
 
-                        <label>
-                            <img src="../assets/img-content/neutral.png" alt="neutre" />
-                            <input type="radio" value="1" />
+                        <label for="happy2">
+                            <img src="../assets/img-content/neutral.png" alt="neutre" / {% if 1 == client.last_happiness %}class="happyIco active"{% else %}class="happyIco"{% endif %}>
+                            <input type="radio" id="happy2" name="last_happiness" value="1" {% if 1 == client.last_happiness %} checked {% endif %} />
                         </label>
 
-                        <label>
-                            <img src="../assets/img-content/happy.png" alt="content">
-                            <input type="radio" value="2" />
+                        <label for="happy3">
+                            <img src="../assets/img-content/happy.png" alt="content" {% if 2 == client.last_happiness %}class="happyIco active"{% else %}class="happyIco"{% endif %}>
+                            <input type="radio" id="happy3" name="last_happiness" value="2" {% if 2 == client.last_happiness %} checked {% endif %} />
                         </label>
                     </div>
-                    <input type="hidden" name="last_happiness" value="{{ client.last_happiness }}" >
-                
-
                 </div>
 
                 <div class="user_details-humeur--wrapper">
                     <div class="user_details-humeur--title">
                         <h2>Budget moyen</h2> 
                     </div>
-                    <input type="hidden" name="budget" value="{{ client.budget }}" >
-                    
-                    <div class="user_details-humeur--cursor">
+                    <div class="user_details-humeur--cursor money-humeur">
                         <img src="../assets/img-content/BarreProgressBudget.svg" alt="">
-                        <img src="../assets/img-content/money.png" alt="" class="money">
+                        <img style="left: {{ client.budget }}px" src="../assets/img-content/money.png" alt="" class="money">
+                        <input type="hidden" value="{{ client.budget }}" name="budget">
                     </div>
+                    
                 </div>
-                <div class="user_details-humeur--wrapper">
-                    <div class="user_details-humeur--title">
-                        <h2>Négociation statut</h2> 
-                    </div>
-                    <div class="user_details-humeur--cursor">
-                        <img src="../assets/img-content/BarreProgressNego.png" alt="">
-                        <img src="../assets/img-content/rocket.png" alt="" class="rocket">
-                    </div>
-                </div>
-
+                
                 <div class="user_details-birthday--wrapper">
                     <div class="user_details-birthday--title">
                         <h2>Birthday</h2> 
                     </div>
                     <div class="user_details-birthday">
                         <div>
-                        {# <input type="date" name="date_of_birth" value="{{ client.date_of_birth }}" /> #}
+                            <input class="birthdayInput" type="date" name="date_of_birth" value="{{ client.date_of_birth is null ? "" : client.date_of_birth|date('Y-m-d') }}"  />
                         </div>
                     </div>
 
                     <div class="user_details-notes">
                         <h2>Notes diverses</h2>
-                        <textarea class="notes" name="notes" id="" cols="30" rows="10">{{ client.notes }}</textarea>
+                        <textarea class="notes" name="notes" id="notes-customers" cols="30" rows="10">{{ client.notes }}</textarea>
                     </div>
                 </div>
             </div>
-<input type="submit" class="btn" value="Modifier">
         </section>
     </form>
+
+    <section class="project_detail">
+        <a class="archieve" href="/delete-client?id={{ client.id }}">Supprimer le client</a>
+    </section>
+
+    <script src="../assets/js/edit-user.js"></script>
 {% endblock %}

@@ -1,5 +1,5 @@
 .list_cust {
-    margin-top: 50px;
+    margin-top: 65px;
     &-project {
         position: relative; 
         border-bottom: 0.5px solid #d8d8d8;
@@ -9,6 +9,10 @@
         }
         p {
             font-size: 16px;
+            color: $blue-light;
+        }
+        a{
+            color: $blue-light !important;
         }
     }
     &-smiley {

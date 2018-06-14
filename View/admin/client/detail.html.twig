@@ -9,7 +9,7 @@
         </div>
     </nav>
 
-    <section class="introduction container">
+    <section class="introduction">
         <div class="arrow-back">
             <a href="/clients"><img src="../assets/img-content/back.svg" alt="back"></a>
         </div>
@@ -17,9 +17,14 @@
             <div class="user_details-logo">
                 <img src="../assets/upload/{{ client.picture }}" alt="image de {{ client.firstname }}">
             </div>
-            <div class="user_details-name">
-                <h3>{{ client.lastname }} {{ client.firstname }}</h3>
+            <div class="user_details-firstname">
+                <h3>{{ client.firstname }}</h3>
             </div>
+
+            <div class="user_details-lastname">
+                <h3>{{ client.lastname }}</h3>
+            </div>
+
             <div class="user_details-firme">
                 <p>{{ client.company }}</p>
             </div>         
@@ -27,33 +32,56 @@
         <div class="user_details">
             <div class="user_details-wrap">
                 <div class="user_details-infos">
-                    <h3>Mail :</h3>
+                    <h3>Mail</h3>
                     <div>{{ client.email }}</div>
                 </div>
                 <div class="user_details-infos">
-                    <h3>Mobile :</h3>
+                    <h3>Mobile</h3>
                     <div>{{ client.phone_number }}</div>
                 </div>
                 <div class="user_details-infos">
-                    <h3>Adresse :</h3>
+                    <h3>Adresse</h3>
                     <div>{{ client.address }}</div>
                 </div>
             </div>
             
         </div>
+
         <div class="user_details-projects">
-        <div class="user_details-projects--title">
-            <h2>Projets attribués</h2>
+
+            <div class="user_details-projects--title">
+                <h2>Projets attribués</h2>
+            </div>
+
+            <div class="user_details-projects--list-projects">
+                {% for p in projects %}
+                    <div class="user_details-projects--list-projects--wrap">
+                        <div class="user_details-projects--list-projects--name">
+                            <a href="/freelance/project?id={{ p.id }}">{{ p.title }} </a>
+                        </div>
+                        <div class="user_details-projects--list-projects--name changeTaille">
+                            {% if 3 == p.status %}
+                                <span class="round archive"></span> Archivé
+                            {% elseif 2 == p.status %}
+                                <span class="round done"></span> Terminé
+                            {% elseif 1 == p.status %}
+                                <span class="round progress"></span> En cours
+                            {% else %}
+                                <span class="round nego"></span> En négociation
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <a class="btn addProject" href="/create-project?idClient={{ client.id }}">Ajouter un projet</a>
+
         </div>
-        <div class="user_details-projects--list-projects">
-            <li>Refonte HETIC : <span> In progress</span></li>
-            <li>Album Feder : <span>Done</span></li>
-        </div>
-        </div>
+
         <div class="user_details-humeur">
             <div class="user_details-humeur--wrapper">
                 <div class="user_details-humeur--title">
-                    <h2>Humeur Current</h2> 
+                    <h2>Impression générale</h2> 
                 </div>
                 <div class="user_details-humeur--emoji">
                     <div class="user_details-humeur--emoji-edit">
@@ -69,29 +97,21 @@
             </div>
             <div class="user_details-humeur--wrapper">
                 <div class="user_details-humeur--title">
-                    <h2>Budget moyen</h2> 
+                    <h2>Budget du client</h2> 
                 </div>
                 <div class="user_details-humeur--cursor">
                     <img src="../assets/img-content/BarreProgressBudget.svg" alt="">
-                    <img src="../assets/img-content/money.png" alt="" class="money">
+                    <img style="left: {{ client.budget }}px" src="../assets/img-content/money.png" alt="" class="money">
                 </div>
             </div>
-            <div class="user_details-humeur--wrapper">
-                <div class="user_details-humeur--title">
-                    <h2>Négociation statut</h2> 
-                </div>
-                <div class="user_details-humeur--cursor">
-                    <img src="../assets/img-content/BarreProgressNego.png" alt="">
-                    <img src="../assets/img-content/rocket.png" alt="" class="rocket">
-                </div>
-            </div>
+            
             <div class="user_details-birthday--wrapper">
                 <div class="user_details-birthday--title">
-                    <h2>Birthday</h2> 
+                    <h2>Anniversaire</h2> 
                 </div>
                 <div class="user_details-birthday">
                     <div>
-                        {{ client.date_of_birth|date("m/d/Y") }} {% if soonBirthday %}<span>soon</span>{% endif %}
+                        {{ client.date_of_birth|date("d/m/Y") }} {% if soonBirthday %}<span>soon</span>{% endif %}
                     </div>
                 </div>
                 <div class="user_details-notes">
@@ -100,6 +120,10 @@
                 </div>
             </div>
         </div>
+    </section>
 
+
+    <section class="project_detail">
+        <a class="archieve" href="/delete-client?id={{ client.id }}">Supprimer le client</a>
     </section>
 {% endblock %}

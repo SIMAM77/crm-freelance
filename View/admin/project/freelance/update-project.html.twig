@@ -1,0 +1,82 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+
+    <section class="create_project_free create_project_free-edit background">
+        <div class="arrow-back">
+            <a href="/freelance/project?id={{ project.id }}"><img src="../assets/img-content/back.svg" alt="back"></a>
+        </div>
+        
+        <form action="/create-project" method="post">
+            <nav class="nav">
+                <div class="nav-wrap">
+                    <input class="link" type="submit" value="Terminer" />
+                </div>
+            </nav>
+            <div class="create_project_free-form create_project_free-form-edit">    
+                <div class="project_title">
+                    <input type="text" name="title" id="title" required value="{{ project.title }}">
+                    <p>Porté par {{ project.name }}</p>
+                </div>
+
+                <div class="create_project_free-choice">    
+                    <label for="status" class="input_switch">
+                        <input id="status" name="status" type="hidden" value="0" />
+                        <span {% if 1 == project.status %}class="slider"{% endif %}></span>
+                    </label>
+                    <p class="descriptionEtatSuper">
+                        {% if 0 == project.status %}
+                            En négociation
+                        {% else %}
+                            En cours
+                        {% endif %}
+                    </p> 
+                </div>
+
+                <input type="hidden" value="{{ project.id_user }}" name="id_user" />
+
+                <div>
+                    <textarea name="description" required placeholder="Description du Projet" style="margin:10px 0;width:100%;color:#000;" class="textDescriptionProjet"></textarea>
+                </div>
+                <div class="user_details-humeur--wrapper">
+                    <div class="user_details-humeur--title" style="margin-left: 0;">
+                        <h2>Négociation statut</h2> 
+                    </div>
+                    <div class="user_details-humeur--cursor rocket-humeur" style="margin: 0;margin-bottom: 20px;">
+                        <img src="../assets/img-content/BarreProgressNego.png" alt="">
+                        <img src="../assets/img-content/rocket.png" alt="" class="rocket" style="left: {{ project.negociation_status }}px">
+                        <input type="hidden" value="" name="negociation_status">
+                    </div>
+                </div>
+                <div class="list">
+                    {% if project.milestone|length > 0 and project.milestone[0]|length > 0 %}
+                        {% for mile in project.milestone %}
+                            <div class="create_project_free-item item--state">
+                                <input type="text" name="project-etape[]" id="project-etape1" value="{{ mile.content }}">
+                                <div class="wrap-state">
+                                    <input type="checkbox" name="project-state[]" {% if mile.status == 'done' %}checked{% endif %}>
+                                    <img src="../assets/img-content/cross.svg" alt="supprimer">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="create_project_free-item item--state">
+                            <input type="text" name="project-etape[]" id="project-etape1" placeholder="Etape 1 du projet" value="">
+                            <div class="wrap-state">
+                                <input type="checkbox" name="project -state[]">
+                                <img src="../assets/img-content/cross.svg" alt="supprimer">
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="create_project_free-newstep">
+                    <p class="btn-add-project">ajouter une étape au projet</p>
+                </div>
+            </div>
+        </form>
+    </section> 
+
+    <script src="../assets/js/edit-project.js"></script>
+{% endblock %}

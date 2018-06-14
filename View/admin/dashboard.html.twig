@@ -1,13 +1,17 @@
 {% extends "adminBase.html.twig" %}
 
 {% block body %}
-    <section class="client has-bckgd">
+    <section class="dashboard">
         <div class="client_descr">
-            <h2 class="client_name h2">12 projets en cours</h2>
+            <img src="../assets/img-content/logo.svg" alt="crowdanizer logo" />
+
+            <h2 class="client_name h2">{{ projects|length }} projets en cours</h2>
             <div class="client_documents">
                 <a href="/projects" class="client_documents-file">Liste des projets</a>
                 <a href="/clients" class="client_documents-file">Liste des clients</a>
             </div>
         </div>
+
+        <p>Nouvelles fonctionnalitées à venir. </p>
     </section>
 {% endblock %}

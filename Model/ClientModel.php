@@ -34,7 +34,8 @@ class ClientModel extends Model
     public function getClient($id)
     {
         
-       $sql = 'SELECT id, firstname, lastname, company, picture, date_of_birth, `address`, email, phone_number, budget, date_create, notes, last_happiness 
+       $sql = 'SELECT id, firstname, lastname, company, picture, date_of_birth, 
+                      `address`, email, phone_number, budget, date_create, notes, last_happiness
                 FROM client
                 WHERE id = :id';
 

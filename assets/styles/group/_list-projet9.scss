@@ -1,24 +1,31 @@
 .list_project_free {
+    padding: 10px;
+    margin-top:29px;
+
     &-item {
         padding: 12px 20px;
-        border-bottom: 1px solid $grey;
+        border-bottom: 1px solid $darker-grey;
+
         .h3 {
-            padding-bottom: 3px; 
-            font-size: 18px; 
-            color: $blue; 
+            padding-bottom: 6px; 
+            a{
+                color: $blue !important; 
+                font-size: 18px; 
+            }
         }
         p {
-            color: $green-light;
+            color: $blue-light;
             font-size: 16px; 
+            margin-bottom: 6px;
         }
-        span {
-            color: $beige; 
+        a, a.visited, a.active {
+            color: $beige !important; 
             font-size: 15px; 
         }
     }
     &-progress {
         padding-top: 3px; 
-        color: $red;
+        color: $darker-grey;
         font-size: 15px; 
     }
 }

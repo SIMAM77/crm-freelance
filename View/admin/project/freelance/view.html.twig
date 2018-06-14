@@ -1,0 +1,82 @@
+{% extends "adminBase.html.twig" %}
+{% block title %}Project{% endblock %}
+
+{% block body %}
+
+    {% if 3 != project.status and 2 != project.status %}
+        <nav class="nav">
+            <div class="nav-wrap">
+                <a href="/edit-project?id={{ project.id }}" class="nav-wrap-before">Editer</a>
+            </div>
+        </nav>
+    {% endif %}
+
+    <div class="projectStatus">
+        {% if 3 == project.status %}
+            <div class="list_project_free-progress"><span class="round archive"></span> Archivé</div>
+        {% elseif 2 == project.status %}
+            <div class="list_project_free-progress"><span class="round done"></span> Terminé</div>
+        {% elseif 0 == project.status %}
+            <div class="list_project_free-progress"><span class="round nego"></span> En négociation</div>
+        {% else %}
+            <div class="list_project_free-progress"><span class="round progress"></span> En cours</div>
+        {% endif %}
+    </div>
+
+    <div class="arrow-back">
+        <a href="/projects"><img src="../assets/img-content/back.svg" alt="back"></a>
+    </div>
+
+    <section class="project_detail part1 background">
+        <div class="project_title">
+            <h2>{{ project.title }}</h2>
+            <h3>Porté par <a href="/client?id={{ project.id_user }}">{{ project.name }}</a></h3>
+        </div>
+
+        <div class="project_description">{{ project.description }}</div>
+
+        {% if 0 == project.status %}
+            <div class="user_details-humeur--wrapper">
+                <div class="user_details-humeur--title">
+                    <h2>Négociation statut</h2> 
+                </div>
+                <div class="user_details-humeur--cursor rocker-humeur">
+                    <img src="../assets/img-content/BarreProgressNego.png" alt="">
+                    <img style="left: {{ project.negociation_status }}px" src="../assets/img-content/rocket.png" alt="" class="rocket">
+                </div>
+            </div>
+        {% endif %}
+
+        {% if project.milestone|length > 0 and project.milestone[0]|length > 0 %}
+            <div class="project_milestone">
+                <div class="user_details-humeur--title">
+                    <h2>Étapes du projet</h2> 
+                </div>
+
+                <ul>
+                    {% for mile in project.milestone %}
+                        <li {% if mile.status == 'done' %}class="check"{% endif %}>
+                            <p>{{ mile.content }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </section>
+
+    {% if 2 == project.status %}
+        <section class="project_detail">
+            <a class="archieve" href="/archieve-project?id={{ project.id }}">Archiver le projet</a>
+            <br />
+            <a class="archieve" href="/reopen-project?id={{ project.id }}">Rouvrir le projet</a>
+        </section>
+    {% elseif 3 == project.status %}
+        <section class="project_detail">
+            <a class="archieve" href="/reopen-project?id={{ project.id }}">Rouvrir le projet</a>
+        </section>
+    {% elseif 3 != project.status %}
+        <section class="project_detail">
+            <a class="archieve" href="/finish-project?id={{ project.id }}">Terminer le projet</a>
+        </section>
+    {% endif %}
+{% endblock %}
