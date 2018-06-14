@@ -1,0 +1,17 @@
+<div class="user_login">
+        <div class="user_login-wrap">
+            <div class="user_login-logo">
+                <img src="img/BarreProgressBudget.svg" alt="">
+            </div>
+            {{ message }}
+            <form class="user_login-form" method="post" action="/crm-freelance/login">
+                <div class="user_login-stg">
+                    <input type="text" aria-label="Login" placeholder="Login" for="username" name="username">
+                </div>
+                <div class="user_login-name user_login-stg">
+                    <input type="password" aria-label="Password" placeholder="Password"  for="password" name="password">
+                </div>
+                <input type="submit"  class="btn" value="Se connecter"/>
+            </form>
+        </div>
+    </div>

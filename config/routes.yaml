@@ -3,6 +3,10 @@ homepage :
   path: /crm-freelance/
   defaults: { _controller: 'Controller\PageController::goHome' }
 
+login :
+  path: /crm-freelance/login
+  defaults: { _controller: 'Controller\PageController::userLogin' }
+
 clients :
   path: /crm-freelance/clients
   defaults: { _controller: 'Controller\ClientsController::listClients' }
