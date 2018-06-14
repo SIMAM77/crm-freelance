@@ -16,6 +16,7 @@
       {
           $projects = new ProjectModel();
           $data = $projects->getListProject();
+          var_dump(__DIR__);
           return self::$twig->render('admin/project/freelance/projectList.html.twig', array(
               'project' => $data
           ));

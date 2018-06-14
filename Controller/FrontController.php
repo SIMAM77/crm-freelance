@@ -6,6 +6,13 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
+// use Monolog\Logger;
+// use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Monolog\Handler\RotatingFileHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Formatter\LineFormatter;
+
 
 /**
  * Class FrontController
@@ -19,6 +26,22 @@ class FrontController
      */
     public function __construct()
     {
+
+        $dateFormat = "Y-m-d H:i:s";
+        $output     = "[%datetime%] %channel% %level_name%: %message% %context% %extra%\n";
+        $formatter  = new LineFormatter($output, $dateFormat);
+        // $stream     = new StreamHandler(__DIR__.'crm.log', Logger::DEBUG);
+        $stream     = new RotatingFileHandler(__DIR__.'/logs/crm.log', Logger::DEBUG);
+        $stream->setFormatter($formatter);
+        $logger     = new Logger('login');
+        $logger->pushHandler($stream);
+        // $log = new Logger('name');
+        // $log->pushHandler(new StreamHandler('config/app.log', Logger::WARNING));
+        
+        // // add records to the log
+        // $log->warning('Foo');
+        // $log->error('Bar');
+
         // router
         $locator = new FileLocator(array(__DIR__));
         $loader = new YamlFileLoader($locator);
