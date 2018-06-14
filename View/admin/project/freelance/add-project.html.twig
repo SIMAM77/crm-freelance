@@ -14,7 +14,7 @@
                 <p>porté par <span>{{ client.firstname }}</span></p>
             </div>
 
-            <form action="/create-project" method="post">
+            <form action="/create-project?idClient={{ client.id }}" method="post">
 
                 <div class="create_project_free-choice">    
                     <label for="status" class="input_switch">
@@ -24,12 +24,11 @@
                     <p class="descriptionEtatSuper">En négociation</p> 
                 </div>
 
+                <input name="id_user" type="hidden" value="{{ client.id }}" />
+
                 <div class="create_project_free-project item--state">
                     <input type="text" name="title" id="title" required placeholder="Nom du Projet">
                 </div>
-
-            
-                
 
                 <div>
                     <textarea name="description" required placeholder="Description du Projet" class="textDescriptionProjet"></textarea>
@@ -39,7 +38,7 @@
                     <div class="create_project_free-item item--state">
                         <input type="text" name="project-etape[]" id="project-etape1" placeholder="Etape 1 du projet" value="">
                         <div class="wrap-state">
-                            <input type="checkbox" name="project-state[]">
+                            <input type="checkbox" name="project-state[]" value="1">
                             <img src="../assets/img-content/cross.svg" alt="supprimer">
                         </div>
                     </div>

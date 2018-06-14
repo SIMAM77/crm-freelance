@@ -20,15 +20,17 @@ for (let i = 0; i <$switch.length; i++) {
 // add project 
 var $btnProject = document.querySelector('.btn-add-project');
 var $list = document.querySelector('.list');
-var numElem = 1; 
+
+var numElem = document.querySelectorAll('.list > div').length; 
 
 $btnProject.addEventListener('click', function(){
     numElem += 1;
 
-    var newDiv = '<div class="create_project_free-item item--state">';
-    newDiv += '<input type="text" name="project-etape[]" id="project-etape' + numElem + '" placeholder="Etape ' + numElem + ' du projet" value=""><div class="wrap-state"><input type="checkbox" name="project-state[]"><img src="../assets/img-content/cross.svg" alt=""></div></div>';
+    var newDiv = document.createElement('div');
+    newDiv.className = 'create_project_free-item item--state';
+    newDiv.innerHTML = '<input type="text" name="project-etape[]" id="project-etape' + numElem + '" placeholder="Etape ' + numElem + ' du projet" value=""><div class="wrap-state"><input type="checkbox" name="project-state[]" value="' + numElem + '"><img src="../assets/img-content/cross.svg" alt=""></div>';
+    $list.appendChild(newDiv);
 
-    $list.innerHTML += newDiv;
     deleteItem();
 })
 

@@ -12,7 +12,7 @@
             
              <div class="client_create-img">
                 <label class="input-img-label" for="file">+</label>
-                <input id="file" class="input-img" type="file" name="file">
+                <input id="file" class="input-img" type="file" name="file" required>
 
                 <div class="client_create-img--file">
                     <img src="../assets/img-content/pers.jpg" alt="">
@@ -22,19 +22,21 @@
             </div>
 
              <div class="client_create-name client_create-stg">
-                <input type="text" name="lastname" id="lastname" aria-label="Name" placeholder="Nom">
+                <input type="text" name="lastname" id="lastname" aria-label="Name" placeholder="Nom" required>
             </div>
 
             <div class="client_create-firstname client_create-stg">
-                <input type="text" name="firstname" id="firstname" aria-label="Firstname" placeholder="Prénom">
+                <input type="text" name="firstname" id="firstname" aria-label="Firstname" placeholder="Prénom" required>
             </div>
 
             <div class="client_create-society client_create-stg">
-                <input type="text" name="company" id="company" aria-label="Society" placeholder="Société">
+                <input type="text" name="company" id="company" aria-label="Society" placeholder="Société" required>
             </div>
 
             <input type="submit" class="btn" value="Ajouter">
         </form>
     </div>
+
+    <script src="../assets/js/add-client.js"></script>
 
 {% endblock %}
